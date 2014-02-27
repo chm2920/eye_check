@@ -1,0 +1,27 @@
+		<div class="panel">
+			<div class="panel-t">管理员</div>
+			<div class="panel-con">
+				<p class="link_btn"><%= link_to '添加', new_admin_path %></p>
+				<div class="members-list">
+					<table>
+						<thead>
+							<tr>
+								<th>用户名</th>
+								<th style="width:260px;">管理</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @admins.each do |admin| %>
+							<tr>
+								<td><%= link_to admin.login_name, edit_admin_path(admin) %></td>
+								<td>
+									<%= link_to '修改', edit_admin_path(admin) %>
+									<%= link_to '删除', admin, method: :delete, data: { confirm: '确定删除吗？' } %>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>

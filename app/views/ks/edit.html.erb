@@ -1,0 +1,6 @@
+		<div class="panel">
+			<div class="panel-t"><a href="/schools">学校列表</a> &gt;&gt; <%= link_to @school.name, school_ks_path(@school) %> &gt;&gt; 修改班级</div>
+			<div class="panel-con member-form">
+				<%= render :partial => "form" %>
+			</div>
+		</div>

@@ -1,0 +1,296 @@
+		<div class="panel">
+			<div class="panel-t">干预方案</div>
+			<div class="panel-con">
+				<p class="link_btn"><a href="/checks">返回</a></p>
+				<div class="member-con">
+					<% case @check.check_result %>
+					<% when "正常" %>
+					<table>
+						<tr>
+							<td class="label">视光评估</td>
+							<td><%= @intervention["sgpg"] %></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %>弹琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %>拉小提琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %>绘画<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %>书法<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %>手工<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %>玩小玩具<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %>看书时间<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %>看电视<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %>玩电脑<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %>纠正写字姿势<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %>经常望远<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %>注意休息和用眼卫生<% end %>
+								<%= @intervention["xwgy_other"] %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %>调节优化训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %>立体<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %>压疗<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %>眼球运动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %>融合<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %>远雾视训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %>互动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %>视觉刺激<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %>运目健眼<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %>按摩<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %>晶体操<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %>看轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %>压轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %>近轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %>阳光亮眼操<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "a") %>叶黄素<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "b") %>多食果蔬鱼类<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "c") %>少吃甜食和辛辣刺激性食物<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><%= @intervention["other"] %></td>
+						</tr>
+					</table>
+					<% when "近视" %>
+					<table>
+						<tr>
+							<td class="label">度数</td>
+							<td><%= @intervention["ds"] %></td>
+						</tr>
+						<tr>
+							<td class="label">程度</td>
+							<td><%= @intervention["cd"] %></td>
+						</tr>
+						<tr>
+							<td class="label">立体视</td>
+							<td><%= @intervention["lts"] %></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %>弹琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %>拉小提琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %>绘画<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %>书法<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %>手工<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %>玩小玩具<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %>看书时间<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %>看电视<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %>玩电脑<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %>纠正写字姿势<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %>经常望远<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %>注意休息和用眼卫生<% end %>
+								<%= @intervention["xwgy_other"] %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %>调节优化训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %>立体<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %>压疗<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %>眼球运动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %>融合<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %>远雾视训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %>互动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %>视觉刺激<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %>运目健眼<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %>按摩<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %>晶体操<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %>看轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %>压轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %>近轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %>阳光亮眼操<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "a") %>叶黄素<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "b") %>多食果蔬鱼类<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "c") %>少吃甜食和辛辣刺激性食物<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><%= @intervention["other"] %></td>
+						</tr>
+					</table>
+					<% when "弱视" %>
+					<table>
+						<tr>
+							<td class="label">校正视力</td>
+							<td><%= @intervention["xzsl"] %></td>
+						</tr>
+						<tr>
+							<td class="label">程度</td>
+							<td><%= @intervention["cd"] %></td>
+						</tr>
+						<tr>
+							<td class="label">立体视</td>
+							<td><%= @intervention["lts"] %></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %>弹琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %>拉小提琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %>绘画<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %>书法<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %>手工<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %>玩小玩具<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %>看书时间<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %>看电视<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %>玩电脑<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %>纠正写字姿势<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %>经常望远<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %>注意休息和用眼卫生<% end %>
+								<%= @intervention["xwgy_other"] %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %>调节优化训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %>立体<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %>压疗<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %>眼球运动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %>融合<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %>远雾视训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %>互动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %>视觉刺激<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %>运目健眼<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %>按摩<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %>晶体操<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "l") %>精细<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "m") %>光刷<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "n") %>后像<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %>看轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %>压轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %>近轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %>阳光亮眼操<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "e") %>遮盖<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "f") %>后像红光法<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "g") %>视觉刺激<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "h") %>光刷<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "a") %>叶黄素<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "b") %>多食果蔬鱼类<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "c") %>少吃甜食和辛辣刺激性食物<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><%= @intervention["other"] %></td>
+						</tr>
+					</table>
+					<% when "远视" %>
+					<table>
+						<tr>
+							<td class="label">校正视力</td>
+							<td><%= @intervention["xzsl"] %></td>
+						</tr>
+						<tr>
+							<td class="label">程度</td>
+							<td><%= @intervention["cd"] %></td>
+						</tr>
+						<tr>
+							<td class="label">立体视</td>
+							<td><%= @intervention["lts"] %></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %>弹琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %>拉小提琴<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %>绘画<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %>书法<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %>手工<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %>玩小玩具<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %>看书时间<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %>看电视<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %>玩电脑<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %>纠正写字姿势<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %>经常望远<% end %>
+								<% if @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %>注意休息和用眼卫生<% end %>
+								<%= @intervention["xwgy_other"] %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %>调节优化训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %>立体<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %>压疗<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %>眼球运动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %>融合<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %>远雾视训练<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %>互动<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %>视觉刺激<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %>运目健眼<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %>按摩<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %>晶体操<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "l") %>精细<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "m") %>光刷<% end %>
+								<% if @intervention["zxfa"] && (@intervention["zxfa"].include? "n") %>后像<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %>看轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %>压轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %>近轻松<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %>阳光亮眼操<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "e") %>遮盖<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "f") %>后像红光法<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "g") %>视觉刺激<% end %>
+								<% if @intervention["jtfa"] && (@intervention["jtfa"].include? "h") %>光刷<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "a") %>叶黄素<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "b") %>多食果蔬鱼类<% end %>
+								<% if @intervention["yyys"] && (@intervention["yyys"].include? "c") %>少吃甜食和辛辣刺激性食物<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><%= @intervention["other"] %></td>
+						</tr>
+					</table>
+					<% end %>
+				</div>
+			</div>
+		</div>

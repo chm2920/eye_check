@@ -1,0 +1,137 @@
+<% if @first %>
+		<div class="panel">
+			<div class="panel-t">第一次检查</div>
+			<div class="panel-con">
+				<p class="link_btn"><a href="/checks">返回</a></p>
+				<div class="member-con">
+					<table>
+						<tr>
+							<td style="width:160px;">检查日期</td>
+							<td colspan="2"><%= @check.check_date %></td>
+						</tr>
+						<tr>
+							<td>检查结果</td>
+							<td colspan="2"><%= @check.check_result %></td>
+						</tr>
+						<tr>
+							<td>项目</td>
+							<td>R（右眼）</td>
+							<td>L（左眼）</td>
+						</tr>
+						<tr>
+							<td class="label">原镜度数 / 戴镜视力</td>
+							<td><%= @params["r"]["c"] %></td>
+							<td><%= @params["l"]["c"] %></td>
+						</tr>
+						<!--tr>
+							<td class="label">裸眼近视力</td>
+							<td><%= @params["r"]["b"] %></td>
+							<td><%= @params["l"]["b"] %></td>
+						</tr-->
+						<tr>
+							<td class="label">裸眼远视力</td>
+							<td><%= @params["r"]["a"] %></td>
+							<td><%= @params["l"]["a"] %></td>
+						</tr>
+						<tr>
+							<td class="label">电脑验光</td>
+							<td><%= @params["r"]["d"] %></td>
+							<td><%= @params["l"]["d"] %></td>
+						</tr>
+						<tr>
+							<td class="label">插片</td>
+							<td><%= @params["r"]["e"] %></td>
+							<td><%= @params["l"]["e"] %></td>
+						</tr>
+						<tr>
+							<td colspan="3" style="padding-right:16px;text-align:right;">镜距：<%= @params["jj"] %></td>
+						</tr>
+						<tr>
+							<td class="label">眼肌：</td>
+							<td colspan="2">
+								<% case @params["yj"] %>
+								<% when "a" %>
+								各运动方向无障碍
+								<% when "b" %>
+								运动障碍 方向为上
+								<% when "c" %>
+								运动障碍 方向为下
+								<% when "d" %>
+								运动障碍 方向为左
+								<% when "e" %>
+								运动障碍 方向为右
+								<% end %></td>
+						</tr>
+						<tr>
+							<td class="label">立体视觉：</td>
+							<td colspan="2">
+								<% case @params["ltsj"] %>
+								<% when "a" %>
+								正常
+								<% when "b" %>
+								下降
+								<% when "c" %>
+								异常
+								<% end %> <%= @params["ltsj_m"] %></td>
+						</tr>
+						<!--tr>
+							<td class="label">结论：</td>
+							<td colspan="2">
+								<% case @params["jl"] %>
+								<% when "a" %>
+								屈光不正
+								<% when "b" %>
+								弱视
+								<% when "c" %>
+								其他
+								<% end %></td>
+						</tr-->
+					</table>
+				</div>
+			</div>
+		</div>
+<% else %>
+		<div class="panel">
+			<div class="panel-t">检查记录</div>
+			<div class="panel-con">
+				<p class="link_btn"><a href="/checks">返回</a></p>
+				<div class="member-con">
+					<table>
+						<tr>
+							<td style="width:160px;">检查日期</td>
+							<td colspan="2"><%= @check.check_date %></td>
+						</tr>
+						<tr>
+							<td>检查结果</td>
+							<td colspan="2"><%= @check.check_result %></td>
+						</tr>
+						<tr>
+							<td>项目</td>
+							<td>R（右眼）</td>
+							<td>L（左眼）</td>
+						</tr>
+						<tr>
+							<td>远视力</td>
+							<td><%= @params["r"]["a"] %></td>
+							<td><%= @params["l"]["a"] %></td>
+						</tr>
+						<tr>
+							<td>戴镜视力</td>
+							<td><%= @params["r"]["b"] %></td>
+							<td><%= @params["l"]["b"] %></td>
+						</tr>
+						<tr>
+							<td>立体视</td>
+							<td><%= @params["r"]["c"] %></td>
+							<td><%= @params["l"]["c"] %></td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td><%= @params["r"]["d"] %></td>
+							<td><%= @params["l"]["d"] %></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+<% end %>

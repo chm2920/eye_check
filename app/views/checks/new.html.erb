@@ -1,0 +1,6 @@
+		<div class="panel">
+			<div class="panel-t"><a href="/schools">学校列表</a> &gt;&gt; <%= link_to @school.name, school_ks_path(@school) %> &gt;&gt; <%= link_to @k.name, school_k_members_path(@school, @k) %> &gt;&gt; <%= link_to @member.name, checks_path(member_id: @member.id) %> &gt;&gt; 添加检查纪录</div>
+			<div class="panel-con com-form">
+				<%= render :partial => "form" %>
+			</div>
+		</div>

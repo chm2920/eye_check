@@ -1,0 +1,103 @@
+<%= form_for(@check) do |f| %>
+<table>
+	<tr>
+		<td class="label">检查时间：</td>
+		<td><input type="text" name="check_date" value="<%= @check.check_date %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td class="label">检查结果：</td>
+		<td><select name="check_result">
+			<option value="正常"<% if @check.check_result == "正常" %> selected<% end %>>正常</option>
+			<option value="近视"<% if @check.check_result == "近视" %> selected<% end %>>近视</option>
+			<option value="弱视"<% if @check.check_result == "弱视" %> selected<% end %>>弱视</option>
+			<option value="远视"<% if @check.check_result == "远视" %> selected<% end %>>远视</option>
+		</select></td>
+	</tr>	
+</table>
+<% if @first %>
+<table class="first-check-tb">
+	<tr>
+		<td class="label">项目</td>
+		<td>R（右眼）</td>
+		<td>L（左眼）</td>
+	</tr>
+	<tr>
+		<td class="label">原镜度数 / 戴镜视力</td>
+		<td><input type="text" name="check[r][c]" value="<% if @params %><%= @params["r"]["c"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][c]" value="<% if @params %><%= @params["l"]["c"] %><% end %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td class="label">裸眼远视力</td>
+		<td><input type="text" name="check[r][a]" value="<% if @params %><%= @params["r"]["a"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][a]" value="<% if @params %><%= @params["l"]["a"] %><% end %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td class="label">电脑验光</td>
+		<td><input type="text" name="check[r][d]" value="<% if @params %><%= @params["r"]["d"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][d]" value="<% if @params %><%= @params["l"]["d"] %><% end %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td class="label">插片</td>
+		<td><input type="text" name="check[r][e]" value="<% if @params %><%= @params["r"]["e"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][e]" value="<% if @params %><%= @params["l"]["e"] %><% end %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td colspan="3" style="padding-right:16px;text-align:right;">镜距：<input type="text" name="check[jj]" value="<% if @params %><%= @params["jj"] %><% end %>" class="ipt" /></td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td class="label">眼肌：</td>
+		<td colspan="2"><select name="check[yj]">
+			<option value="a"<% if @params && @params["yj"] == "a" %> selected<% end %>>各运动方向无障碍</option>
+			<option value="b"<% if @params && @params["yj"] == "b" %> selected<% end %>>运动障碍 方向为上</option>
+			<option value="c"<% if @params && @params["yj"] == "c" %> selected<% end %>>运动障碍 方向为下</option>
+			<option value="d"<% if @params && @params["yj"] == "d" %> selected<% end %>>运动障碍 方向为左</option>
+			<option value="e"<% if @params && @params["yj"] == "e" %> selected<% end %>>运动障碍 方向为右</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="label">立体视觉：</td>
+		<td colspan="2"><select name="check[ltsj]">
+			<option value="a"<% if @params && @params["ltsj"] == "a" %> selected<% end %>>正常</option>
+			<option value="b"<% if @params && @params["ltsj"] == "b" %> selected<% end %>>下降</option>
+			<option value="c"<% if @params && @params["ltsj"] == "c" %> selected<% end %>>异常</option>
+		</select>&nbsp;&nbsp;&nbsp;<input type="text" name="check[ltsj_m]" value="<% if @params %><%= @params["ltsj_m"] %><% end %>" class="ipt" /></td>
+	</tr>
+</table>
+<% else %>
+<table class="first-check-tb">
+	<tr>
+		<td class="label">项目</td>
+		<td>R（右眼）</td>
+		<td>L（左眼）</td>
+	</tr>
+	<tr>
+		<td class="label">远视力</td>
+		<td><input type="text" name="check[r][a]" value="<% if @params %><%= @params["r"]["a"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][a]" value="<% if @params %><%= @params["l"]["a"] %><% end %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td class="label">戴镜视力</td>
+		<td><input type="text" name="check[r][b]" value="<% if @params %><%= @params["r"]["b"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][b]" value="<% if @params %><%= @params["l"]["b"] %><% end %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td class="label">立体视</td>
+		<td><input type="text" name="check[r][c]" value="<% if @params %><%= @params["r"]["c"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][c]" value="<% if @params %><%= @params["l"]["c"] %><% end %>" class="ipt" /></td>
+	</tr>
+	<tr>
+		<td class="label">备注</td>
+		<td><input type="text" name="check[r][d]" value="<% if @params %><%= @params["r"]["d"] %><% end %>" class="ipt" /></td>
+		<td><input type="text" name="check[l][d]" value="<% if @params %><%= @params["l"]["d"] %><% end %>" class="ipt" /></td>
+	</tr>
+</table>
+<% end %>
+<table>
+	<tr>
+		<td class="label">&nbsp;</td>
+		<td colspan="2"><input type="hidden" name="member_id" value="<%= @member.id %>" /><input type="submit" name="submit" class="sbt" value="确定" /></td>
+	</tr>
+</table>
+<% end %>

@@ -1,0 +1,347 @@
+		<div class="panel">
+			<div class="panel-t"><a href="/schools">学校列表</a> &gt;&gt; <%= link_to @school.name, school_ks_path(@school) %> &gt;&gt; <%= link_to @k.name, school_k_members_path(@school, @k) %> &gt;&gt; <%= @member.name %></div>
+			<div class="panel-con">
+				<p class="link_btn"><%= link_to '返回', checks_path(member_id: @member.id) %></p>
+				<div class="com-form">
+					<%= form_tag "/checks/#{@check.id}/intervention_update?member_id=#{@member.id}" do %>
+		<% case @check.check_result %>
+			<% when "正常" %>
+					<table>
+						<tr>
+							<td class="label">视光评估</td>
+							<td><select name="intervention[sgpg]">
+								<option value="正常"<% if @intervention && @intervention["sgpg"] == "正常" %> selected<% end %>>正常</option>
+								<option value="边缘性"<% if @intervention && @intervention["sgpg"] == "边缘性" %> selected<% end %>>边缘性</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<input type="checkbox" name="intervention[xwgy][]" value="a"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %> checked="checked"<% end %> />弹琴
+								<input type="checkbox" name="intervention[xwgy][]" value="b"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %> checked="checked"<% end %> />拉小提琴
+								<input type="checkbox" name="intervention[xwgy][]" value="c"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %> checked="checked"<% end %> />绘画
+								<input type="checkbox" name="intervention[xwgy][]" value="d"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %> checked="checked"<% end %> />书法
+								<input type="checkbox" name="intervention[xwgy][]" value="e"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %> checked="checked"<% end %> />手工
+								<input type="checkbox" name="intervention[xwgy][]" value="f"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %> checked="checked"<% end %> />玩小玩具
+								<input type="checkbox" name="intervention[xwgy][]" value="g"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %> checked="checked"<% end %> />看书时间<br />
+								<input type="checkbox" name="intervention[xwgy][]" value="h"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %> checked="checked"<% end %> />看电视
+								<input type="checkbox" name="intervention[xwgy][]" value="i"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %> checked="checked"<% end %> />玩电脑
+								<input type="checkbox" name="intervention[xwgy][]" value="j"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %> checked="checked"<% end %> />纠正写字姿势
+								<input type="checkbox" name="intervention[xwgy][]" value="k"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %> checked="checked"<% end %> />经常望远
+								<input type="checkbox" name="intervention[xwgy][]" value="l"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %> checked="checked"<% end %> />注意休息和用眼卫生<br />
+								其他<input type="text" name="intervention[xwgy_other]" value="<% if @intervention %><%= @intervention["xwgy_other"] %><% end %>" class="ipt" />
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<input type="checkbox" name="intervention[zxfa][]" value="a"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %> checked="checked"<% end %> />调节优化训练
+								<input type="checkbox" name="intervention[zxfa][]" value="b"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %> checked="checked"<% end %> />立体
+								<input type="checkbox" name="intervention[zxfa][]" value="c"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %> checked="checked"<% end %> />压疗
+								<input type="checkbox" name="intervention[zxfa][]" value="d"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %> checked="checked"<% end %> />眼球运动
+								<input type="checkbox" name="intervention[zxfa][]" value="e"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %> checked="checked"<% end %> />融合
+								<input type="checkbox" name="intervention[zxfa][]" value="f"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %> checked="checked"<% end %> />远雾视训练
+								<input type="checkbox" name="intervention[zxfa][]" value="g"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %> checked="checked"<% end %> />互动<br />
+								<input type="checkbox" name="intervention[zxfa][]" value="h"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %> checked="checked"<% end %> />视觉刺激
+								<input type="checkbox" name="intervention[zxfa][]" value="i"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %> checked="checked"<% end %> />运目健眼
+								<input type="checkbox" name="intervention[zxfa][]" value="j"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %> checked="checked"<% end %> />按摩
+								<input type="checkbox" name="intervention[zxfa][]" value="k"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %> checked="checked"<% end %> />晶体操
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<input type="checkbox" name="intervention[jtfa][]" value="a"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %> checked="checked"<% end %> />看轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="b"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %> checked="checked"<% end %> />压轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="c"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %> checked="checked"<% end %> />近轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="d"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %> checked="checked"<% end %> />阳光亮眼操
+								<input type="checkbox" name="intervention[jtfa][]" value="e"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "e") %> checked="checked"<% end %> />康复仪
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<input type="checkbox" name="intervention[yyys][]" value="a"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "a") %> checked="checked"<% end %> />叶黄素
+								<input type="checkbox" name="intervention[yyys][]" value="b"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "b") %> checked="checked"<% end %> />多食果蔬鱼类
+								<input type="checkbox" name="intervention[yyys][]" value="c"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "c") %> checked="checked"<% end %> />少吃甜食和辛辣刺激性食物
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><input type="text" name="intervention[other]" value="<% if @intervention %><%= @intervention["other"] %><% end %>" class="ipt" /></td>
+						</tr>
+					</table>
+			<% when "近视" %>
+					<table>
+						<tr>
+							<td class="label">度数</td>
+							<td><select name="intervention[ds]">
+								<option value="-3.00DS以下"<% if @intervention && @intervention["ds"] == "-3.00DS以下" %> selected<% end %>>-3.00DS以下</option>
+								<option value="-3.00DS～-6.00DS"<% if @intervention && @intervention["ds"] == "-3.00DS～-6.00DS" %> selected<% end %>>-3.00DS～-6.00DS</option>
+								<option value="-6.00DS以上"<% if @intervention && @intervention["ds"] == "-6.00DS以上" %> selected<% end %>>-6.00DS以上</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">程度</td>
+							<td><select name="intervention[cd]">
+								<option value="低度近视"<% if @intervention && @intervention["cd"] == "低度近视" %> selected<% end %>>低度近视</option>
+								<option value="中度近视"<% if @intervention && @intervention["cd"] == "中度近视" %> selected<% end %>>中度近视</option>
+								<option value="高度近视"<% if @intervention && @intervention["cd"] == "高度近视" %> selected<% end %>>高度近视</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">立体视</td>
+							<td><select name="intervention[lts]">
+								<option value="正常"<% if @intervention && @intervention["lts"] == "正常" %> selected<% end %>>正常</option>
+								<option value="下降"<% if @intervention && @intervention["lts"] == "下降" %> selected<% end %>>下降</option>
+								<option value="异常"<% if @intervention && @intervention["lts"] == "异常" %> selected<% end %>>异常</option>
+								<option value="立体盲"<% if @intervention && @intervention["lts"] == "立体盲" %> selected<% end %>>>1200</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<input type="checkbox" name="intervention[xwgy][]" value="a"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %> checked="checked"<% end %> />弹琴
+								<input type="checkbox" name="intervention[xwgy][]" value="b"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %> checked="checked"<% end %> />拉小提琴
+								<input type="checkbox" name="intervention[xwgy][]" value="c"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %> checked="checked"<% end %> />绘画
+								<input type="checkbox" name="intervention[xwgy][]" value="d"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %> checked="checked"<% end %> />书法
+								<input type="checkbox" name="intervention[xwgy][]" value="e"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %> checked="checked"<% end %> />手工
+								<input type="checkbox" name="intervention[xwgy][]" value="f"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %> checked="checked"<% end %> />玩小玩具
+								<input type="checkbox" name="intervention[xwgy][]" value="g"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %> checked="checked"<% end %> />看书时间<br />
+								<input type="checkbox" name="intervention[xwgy][]" value="h"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %> checked="checked"<% end %> />看电视
+								<input type="checkbox" name="intervention[xwgy][]" value="i"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %> checked="checked"<% end %> />玩电脑
+								<input type="checkbox" name="intervention[xwgy][]" value="j"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %> checked="checked"<% end %> />纠正写字姿势
+								<input type="checkbox" name="intervention[xwgy][]" value="k"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %> checked="checked"<% end %> />经常望远
+								<input type="checkbox" name="intervention[xwgy][]" value="l"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %> checked="checked"<% end %> />注意休息和用眼卫生<br />
+								其他<input type="text" name="intervention[xwgy_other]" value="<% if @intervention %><%= @intervention["xwgy_other"] %><% end %>" class="ipt" />
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<input type="checkbox" name="intervention[zxfa][]" value="a"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %> checked="checked"<% end %> />调节优化训练
+								<input type="checkbox" name="intervention[zxfa][]" value="b"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %> checked="checked"<% end %> />立体
+								<input type="checkbox" name="intervention[zxfa][]" value="c"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %> checked="checked"<% end %> />压疗
+								<input type="checkbox" name="intervention[zxfa][]" value="d"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %> checked="checked"<% end %> />眼球运动
+								<input type="checkbox" name="intervention[zxfa][]" value="e"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %> checked="checked"<% end %> />融合
+								<input type="checkbox" name="intervention[zxfa][]" value="f"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %> checked="checked"<% end %> />远雾视训练
+								<input type="checkbox" name="intervention[zxfa][]" value="g"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %> checked="checked"<% end %> />互动<br />
+								<input type="checkbox" name="intervention[zxfa][]" value="h"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %> checked="checked"<% end %> />视觉刺激
+								<input type="checkbox" name="intervention[zxfa][]" value="i"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %> checked="checked"<% end %> />运目健眼
+								<input type="checkbox" name="intervention[zxfa][]" value="j"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %> checked="checked"<% end %> />按摩
+								<input type="checkbox" name="intervention[zxfa][]" value="k"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %> checked="checked"<% end %> />晶体操
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<input type="checkbox" name="intervention[jtfa][]" value="a"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %> checked="checked"<% end %> />看轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="b"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %> checked="checked"<% end %> />压轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="c"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %> checked="checked"<% end %> />近轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="d"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %> checked="checked"<% end %> />阳光亮眼操
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<input type="checkbox" name="intervention[yyys][]" value="a"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "a") %> checked="checked"<% end %> />叶黄素
+								<input type="checkbox" name="intervention[yyys][]" value="b"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "b") %> checked="checked"<% end %> />多食果蔬鱼类
+								<input type="checkbox" name="intervention[yyys][]" value="c"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "c") %> checked="checked"<% end %> />少吃甜食和辛辣刺激性食物
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><input type="text" name="intervention[other]" value="<% if @intervention %><%= @intervention["other"] %><% end %>" class="ipt" /></td>
+						</tr>
+					</table>
+			<% when "弱视" %>
+					<table>
+						<tr>
+							<td class="label">校正视力</td>
+							<td><select name="intervention[xzsl]">
+								<option value="0.8~0.6"<% if @intervention && @intervention["xzsl"] == "0.8~0.6" %> selected<% end %>>0.8~0.6</option>
+								<option value="0.5~0.2"<% if @intervention && @intervention["xzsl"] == "0.5~0.2" %> selected<% end %>>0.5~0.2</option>
+								<option value="<=0.1"<% if @intervention && @intervention["xzsl"] == "<=0.1" %> selected<% end %>><=0.1</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">程度</td>
+							<td><select name="intervention[cd]">
+								<option value="轻度弱视"<% if @intervention && @intervention["cd"] == "轻度弱视" %> selected<% end %>>轻度弱视</option>
+								<option value="中度弱视"<% if @intervention && @intervention["cd"] == "中度弱视" %> selected<% end %>>中度弱视</option>
+								<option value="重度弱视"<% if @intervention && @intervention["cd"] == "重度弱视" %> selected<% end %>>重度弱视</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">立体视</td>
+							<td><select name="intervention[lts]">
+								<option value="正常"<% if @intervention && @intervention["lts"] == "正常" %> selected<% end %>>正常</option>
+								<option value="下降"<% if @intervention && @intervention["lts"] == "下降" %> selected<% end %>>下降</option>
+								<option value="异常"<% if @intervention && @intervention["lts"] == "异常" %> selected<% end %>>异常</option>
+								<option value="立体盲"<% if @intervention && @intervention["lts"] == "立体盲" %> selected<% end %>>>1200</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<input type="checkbox" name="intervention[xwgy][]" value="a"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %> checked="checked"<% end %> />弹琴
+								<input type="checkbox" name="intervention[xwgy][]" value="b"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %> checked="checked"<% end %> />拉小提琴
+								<input type="checkbox" name="intervention[xwgy][]" value="c"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %> checked="checked"<% end %> />绘画
+								<input type="checkbox" name="intervention[xwgy][]" value="d"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %> checked="checked"<% end %> />书法
+								<input type="checkbox" name="intervention[xwgy][]" value="e"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %> checked="checked"<% end %> />手工
+								<input type="checkbox" name="intervention[xwgy][]" value="f"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %> checked="checked"<% end %> />玩小玩具
+								<input type="checkbox" name="intervention[xwgy][]" value="g"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %> checked="checked"<% end %> />看书时间<br />
+								<input type="checkbox" name="intervention[xwgy][]" value="h"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %> checked="checked"<% end %> />看电视
+								<input type="checkbox" name="intervention[xwgy][]" value="i"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %> checked="checked"<% end %> />玩电脑
+								<input type="checkbox" name="intervention[xwgy][]" value="j"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %> checked="checked"<% end %> />纠正写字姿势
+								<input type="checkbox" name="intervention[xwgy][]" value="k"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %> checked="checked"<% end %> />经常望远
+								<input type="checkbox" name="intervention[xwgy][]" value="l"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %> checked="checked"<% end %> />注意休息和用眼卫生<br />
+								其他<input type="text" name="intervention[xwgy_other]" value="<% if @intervention %><%= @intervention["xwgy_other"] %><% end %>" class="ipt" />
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<input type="checkbox" name="intervention[zxfa][]" value="a"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %> checked="checked"<% end %> />调节优化训练
+								<input type="checkbox" name="intervention[zxfa][]" value="b"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %> checked="checked"<% end %> />立体
+								<input type="checkbox" name="intervention[zxfa][]" value="c"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %> checked="checked"<% end %> />压疗
+								<input type="checkbox" name="intervention[zxfa][]" value="d"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %> checked="checked"<% end %> />眼球运动
+								<input type="checkbox" name="intervention[zxfa][]" value="e"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %> checked="checked"<% end %> />融合
+								<input type="checkbox" name="intervention[zxfa][]" value="f"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %> checked="checked"<% end %> />远雾视训练
+								<input type="checkbox" name="intervention[zxfa][]" value="g"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %> checked="checked"<% end %> />互动<br />
+								<input type="checkbox" name="intervention[zxfa][]" value="h"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %> checked="checked"<% end %> />视觉刺激
+								<input type="checkbox" name="intervention[zxfa][]" value="i"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %> checked="checked"<% end %> />运目健眼
+								<input type="checkbox" name="intervention[zxfa][]" value="j"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %> checked="checked"<% end %> />按摩
+								<input type="checkbox" name="intervention[zxfa][]" value="k"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %> checked="checked"<% end %> />晶体操
+								<input type="checkbox" name="intervention[zxfa][]" value="l"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "l") %> checked="checked"<% end %> />精细
+								<input type="checkbox" name="intervention[zxfa][]" value="m"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "m") %> checked="checked"<% end %> />光刷
+								<input type="checkbox" name="intervention[zxfa][]" value="n"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "n") %> checked="checked"<% end %> />后像
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<input type="checkbox" name="intervention[jtfa][]" value="a"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %> checked="checked"<% end %> />看轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="b"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %> checked="checked"<% end %> />压轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="c"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %> checked="checked"<% end %> />近轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="d"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %> checked="checked"<% end %> />阳光亮眼操
+								<input type="checkbox" name="intervention[jtfa][]" value="e"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "e") %> checked="checked"<% end %> />遮盖
+								<input type="checkbox" name="intervention[jtfa][]" value="f"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "f") %> checked="checked"<% end %> />后像红光法
+								<input type="checkbox" name="intervention[jtfa][]" value="g"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "g") %> checked="checked"<% end %> />视觉刺激
+								<input type="checkbox" name="intervention[jtfa][]" value="h"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "h") %> checked="checked"<% end %> />光刷
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<input type="checkbox" name="intervention[yyys][]" value="a"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "a") %> checked="checked"<% end %> />叶黄素
+								<input type="checkbox" name="intervention[yyys][]" value="b"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "b") %> checked="checked"<% end %> />多食果蔬鱼类
+								<input type="checkbox" name="intervention[yyys][]" value="c"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "c") %> checked="checked"<% end %> />少吃甜食和辛辣刺激性食物
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><input type="text" name="intervention[other]" value="<% if @intervention %><%= @intervention["other"] %><% end %>" class="ipt" /></td>
+						</tr>
+					</table>
+			<% when "远视" %>
+					<table>
+						<tr>
+							<td class="label">校正视力</td>
+							<td><select name="intervention[xzsl]">
+								<option value="0.8~0.6"<% if @intervention && @intervention["xzsl"] == "0.8~0.6" %> selected<% end %>>0.8~0.6</option>
+								<option value="0.5~0.2"<% if @intervention && @intervention["xzsl"] == "0.5~0.2" %> selected<% end %>>0.5~0.2</option>
+								<option value="<=0.1"<% if @intervention && @intervention["xzsl"] == "<=0.1" %> selected<% end %>><=0.1</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">程度</td>
+							<td><select name="intervention[cd]">
+								<option value="轻度远视"<% if @intervention && @intervention["cd"] == "轻度远视" %> selected<% end %>>轻度远视</option>
+								<option value="中度远视"<% if @intervention && @intervention["cd"] == "中度远视" %> selected<% end %>>中度远视</option>
+								<option value="重度远视"<% if @intervention && @intervention["cd"] == "重度远视" %> selected<% end %>>重度远视</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">立体视</td>
+							<td><select name="intervention[lts]">
+								<option value="正常"<% if @intervention && @intervention["lts"] == "正常" %> selected<% end %>>正常</option>
+								<option value="下降"<% if @intervention && @intervention["lts"] == "下降" %> selected<% end %>>下降</option>
+								<option value="异常"<% if @intervention && @intervention["lts"] == "异常" %> selected<% end %>>异常</option>
+								<option value="立体盲"<% if @intervention && @intervention["lts"] == "立体盲" %> selected<% end %>>>1200</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td class="label">行为干预<br />（减少以下项目的从事时间）</td>
+							<td>
+								<input type="checkbox" name="intervention[xwgy][]" value="a"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "a") %> checked="checked"<% end %> />弹琴
+								<input type="checkbox" name="intervention[xwgy][]" value="b"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "b") %> checked="checked"<% end %> />拉小提琴
+								<input type="checkbox" name="intervention[xwgy][]" value="c"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "c") %> checked="checked"<% end %> />绘画
+								<input type="checkbox" name="intervention[xwgy][]" value="d"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "d") %> checked="checked"<% end %> />书法
+								<input type="checkbox" name="intervention[xwgy][]" value="e"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "e") %> checked="checked"<% end %> />手工
+								<input type="checkbox" name="intervention[xwgy][]" value="f"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "f") %> checked="checked"<% end %> />玩小玩具
+								<input type="checkbox" name="intervention[xwgy][]" value="g"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "g") %> checked="checked"<% end %> />看书时间<br />
+								<input type="checkbox" name="intervention[xwgy][]" value="h"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "h") %> checked="checked"<% end %> />看电视
+								<input type="checkbox" name="intervention[xwgy][]" value="i"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "i") %> checked="checked"<% end %> />玩电脑
+								<input type="checkbox" name="intervention[xwgy][]" value="j"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "j") %> checked="checked"<% end %> />纠正写字姿势
+								<input type="checkbox" name="intervention[xwgy][]" value="k"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "k") %> checked="checked"<% end %> />经常望远
+								<input type="checkbox" name="intervention[xwgy][]" value="l"<% if @intervention && @intervention["xwgy"] && (@intervention["xwgy"].include? "l") %> checked="checked"<% end %> />注意休息和用眼卫生<br />
+								其他<input type="text" name="intervention[xwgy_other]" value="<% if @intervention %><%= @intervention["xwgy_other"] %><% end %>" class="ipt" />
+							</td>
+						</tr>
+						<tr>
+							<td class="label">中心方案</td>
+							<td>
+								<input type="checkbox" name="intervention[zxfa][]" value="a"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "a") %> checked="checked"<% end %> />调节优化训练
+								<input type="checkbox" name="intervention[zxfa][]" value="b"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "b") %> checked="checked"<% end %> />立体
+								<input type="checkbox" name="intervention[zxfa][]" value="c"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "c") %> checked="checked"<% end %> />压疗
+								<input type="checkbox" name="intervention[zxfa][]" value="d"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "d") %> checked="checked"<% end %> />眼球运动
+								<input type="checkbox" name="intervention[zxfa][]" value="e"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "e") %> checked="checked"<% end %> />融合
+								<input type="checkbox" name="intervention[zxfa][]" value="f"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "f") %> checked="checked"<% end %> />远雾视训练
+								<input type="checkbox" name="intervention[zxfa][]" value="g"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "g") %> checked="checked"<% end %> />互动<br />
+								<input type="checkbox" name="intervention[zxfa][]" value="h"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "h") %> checked="checked"<% end %> />视觉刺激
+								<input type="checkbox" name="intervention[zxfa][]" value="i"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "i") %> checked="checked"<% end %> />运目健眼
+								<input type="checkbox" name="intervention[zxfa][]" value="j"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "j") %> checked="checked"<% end %> />按摩
+								<input type="checkbox" name="intervention[zxfa][]" value="k"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "k") %> checked="checked"<% end %> />晶体操
+								<input type="checkbox" name="intervention[zxfa][]" value="l"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "l") %> checked="checked"<% end %> />精细
+								<input type="checkbox" name="intervention[zxfa][]" value="m"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "m") %> checked="checked"<% end %> />光刷
+								<input type="checkbox" name="intervention[zxfa][]" value="n"<% if @intervention && @intervention["zxfa"] && (@intervention["zxfa"].include? "n") %> checked="checked"<% end %> />后像
+							</td>
+						</tr>
+						<tr>
+							<td class="label">家庭方案</td>
+							<td>
+								<input type="checkbox" name="intervention[jtfa][]" value="a"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "a") %> checked="checked"<% end %> />看轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="b"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "b") %> checked="checked"<% end %> />压轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="c"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "c") %> checked="checked"<% end %> />近轻松
+								<input type="checkbox" name="intervention[jtfa][]" value="d"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "d") %> checked="checked"<% end %> />阳光亮眼操
+								<input type="checkbox" name="intervention[jtfa][]" value="e"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "e") %> checked="checked"<% end %> />遮盖
+								<input type="checkbox" name="intervention[jtfa][]" value="f"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "f") %> checked="checked"<% end %> />后像红光法
+								<input type="checkbox" name="intervention[jtfa][]" value="g"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "g") %> checked="checked"<% end %> />视觉刺激
+								<input type="checkbox" name="intervention[jtfa][]" value="h"<% if @intervention && @intervention["jtfa"] && (@intervention["jtfa"].include? "h") %> checked="checked"<% end %> />光刷
+							</td>
+						</tr>
+						<tr>
+							<td class="label">营养饮食</td>
+							<td>
+								<input type="checkbox" name="intervention[yyys][]" value="a"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "a") %> checked="checked"<% end %> />叶黄素
+								<input type="checkbox" name="intervention[yyys][]" value="b"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "b") %> checked="checked"<% end %> />多食果蔬鱼类
+								<input type="checkbox" name="intervention[yyys][]" value="c"<% if @intervention && @intervention["yyys"] && (@intervention["yyys"].include? "c") %> checked="checked"<% end %> />少吃甜食和辛辣刺激性食物
+							</td>
+						</tr>
+						<tr>
+							<td class="label">其他</td>
+							<td><input type="text" name="intervention[other]" value="<% if @intervention %><%= @intervention["other"] %><% end %>" class="ipt" /></td>
+						</tr>
+					</table>
+		<% end %>
+					<table>
+						<tr>
+							<td class="label">&nbsp;</td>
+							<td><input type="submit" name="submit" class="sbt" value="确定" /></td>
+						</tr>
+					</table>
+					<% end %>
+				</div>
+			</div>
+		</div>

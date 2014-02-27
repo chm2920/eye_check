@@ -1,0 +1,34 @@
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+ul,li,ol{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:none;}
+a{font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:0;padding:0;}
+input,select{margin: 0;padding: 0;-webkit-appearance: none; border-style: none;}
+em,strong,th{font-style:normal;}
+input[type="search"]{-webkit-appearance:none;}
+input[type="submit"]{-webkit-appearance:none;background-color:transparent;}
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button{display:none;}
+
+body{line-height:22px;font-family:Arial,Helvetica,LiHei Pro Medium;font-size:12px;color:#000;-webkit-text-size-adjust:none;}
+a{color:#8e8e8e;text-decoration:none;}
+a:hover{color:#00a2e9;}
+
+.clearfix:after{content:"."; display:block; height:0; clear:both; visibility:hidden; }
+* html>body .clearfix { display:inline-block; width:100%; }
+* html .clearfix { height:1%; /* End hide from IE-mac */ } 
+/* ie7 hack*/ 
+*+html .clearfix { min-height:1%; } 
+.clearfix{zoom:1;}
+
+body{background:url(/assets/login.png) no-repeat center top;}
+#loginForm{position:absolute;top:232px;left:50%;margin-left:-333px;width:669px;height:312px;background:url(/assets/login_form_bg.png) no-repeat;}
+.login-form-con{position:relative;}
+.login-user{position:absolute;top:-17px;left:45px;}
+.login-btn{position:absolute;top:110px;left:440px;}
+.username, .password{position:absolute;padding:4px 3px;width:230px;height:16px;line-height:16px;border:0;}
+.username{top:94px;left:100px;}
+.password{top:139px;left:100px;}
+
+.err-msg{position:absolute;top:180px;left:440px;color:#FF0000;}

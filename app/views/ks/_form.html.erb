@@ -1,0 +1,13 @@
+<%= form_for([@school, @k]) do |f| %>
+<p><span>年级：</span><select name="k[grade]">
+	<option value="1"<% if @k.grade == "1" %> selected<% end %>>一年级</option>
+	<option value="2"<% if @k.grade == "2" %> selected<% end %>>二年级</option>
+	<option value="3"<% if @k.grade == "3" %> selected<% end %>>三年级</option>
+	<option value="4"<% if @k.grade == "4" %> selected<% end %>>四年级</option>
+	<option value="5"<% if @k.grade == "5" %> selected<% end %>>五年级</option>
+	<option value="6"<% if @k.grade == "6" %> selected<% end %>>六年级</option>
+	</select>
+</p>
+<p><span>班级名称：</span><%= f.text_field :name, :class => "ipt" %></p>
+<p><input type="submit" name="submit" class="sbt" value="确定" /></p>
+<% end %>

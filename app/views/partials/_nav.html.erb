@@ -1,0 +1,24 @@
+<%
+	case session[:role]
+	when "admin"
+%>
+			<ul>
+				<li<% if @cur.blank? %> class="cur"<% end %>><a href="/main">会员档案</a></li>
+				<li<% if !@cur.blank? && @cur == "master" %> class="cur"<% end %>><a href="/masters">学校管理人员</a></li>
+				<li<% if !@cur.blank? && @cur == "admin" %> class="cur"<% end %>><a href="/admins">管理员</a></li>
+			</ul>
+<%
+	when "master"
+%>
+			<ul>
+				<li class="cur"><a href="/main">近视率查询</a></li>
+			</ul>
+<%
+	when "member"
+%>
+			<ul>
+				<li class="cur"><a href="/checks">视力检查记录</a></li>
+			</ul>
+<%
+	end
+%>

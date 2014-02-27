@@ -1,0 +1,10 @@
+		<div class="panel">
+			<div class="panel-t">修改密码</div>
+			<div class="panel-con form">
+				<%= form_tag "/pwd_rst" do %>
+				<p><span>密码：</span><input type="text" name="password" value="" class="ipt" /></p>
+				<p><span>确认密码：</span><input type="text" name="re_password" value="" class="ipt" /></p>
+				<p><input type="submit" name="submit" class="sbt" value="确定" /></p>
+				<% end %>
+			</div>
+		</div>

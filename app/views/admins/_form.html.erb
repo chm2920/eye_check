@@ -1,0 +1,5 @@
+<%= form_for(@admin) do |f| %>
+<p><span>用户名：</span><%= f.text_field :login_name, :class => "ipt" %></p>
+<p><span>密码：</span><%= f.text_field :login_pwd, :class => "ipt" %></p>
+<p><input type="submit" name="submit" class="sbt" value="确定" /></p>
+<% end %>

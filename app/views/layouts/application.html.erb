@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>会员档案管理系统</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <%= javascript_include_tag :jquery, :jquery_ujs %>
+  <%= stylesheet_link_tag 'style' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<div id="Container">
+<div id="top">
+	<div class="top wapper">
+		<img src="/assets/logo.png" class="logo" />
+		<img src="/assets/t_title.png" class="t-title" />
+		<span>
+			<a href="/"><img src="/assets/link_home.png" /></a>
+			<a href="/pwd"><img src="/assets/link_pwd.png" /></a>
+			<a href="/logout"><img src="/assets/link_exit.png" /></a>
+		</span>
+	</div>
+</div>
+<div id="PageBody" class="wapper clearfix">
+	<div class="menu">
+		<div class="menu-t"></div>
+		<div class="menu-list">
+			<%= render :partial => '/partials/nav' %>
+		</div>
+	</div>
+	<div class="main">
+		<%= yield %>
+	</div>
+</div>
+<div id="Footer">
+	<div id="foot" class="wapper clearfix">
+		
+	</div>
+</div>
+</div>
+</body>
+</html>

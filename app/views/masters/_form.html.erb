@@ -1,0 +1,11 @@
+<%= form_for(@master) do |f| %>
+<p><span>学校：</span><select name="master[school_id]">
+	<% @schools.each do |school| %>
+	<option value="<%= school.id %>"<% if school.id == @master.school_id %> selected<% end %>><%= school.name %></option>
+	<% end %>
+	</select>
+</p>
+<p><span>用户名：</span><%= f.text_field :login_name, :class => "ipt" %></p>
+<p><span>密码：</span><%= f.text_field :login_pwd, :class => "ipt" %></p>
+<p><input type="submit" name="submit" class="sbt" value="确定" /></p>
+<% end %>

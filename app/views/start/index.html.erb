@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>会员档案管理系统</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <%= stylesheet_link_tag 'login' %>
+</head>
+<body>
+<div id="loginForm">
+<%= form_tag 'login' do %>
+	<div class="login-form-con">
+		<img src="/assets/login_user.png" class="login-user" />
+		<input type="image" src="/assets/login_btn.png" class="login-btn" />
+		<input type="text" name="username" value="test" class="username" />
+		<input type="password" name="password" value="test" class="password" />
+		<% if @err_msg %><div class="err-msg"><%= @err_msg %><% end %>
+	</div>
+<% end %>
+</div>
+</body>
+</html>

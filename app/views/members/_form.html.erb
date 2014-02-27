@@ -1,0 +1,27 @@
+<%= form_for([@school, @k, @member]) do |f| %>
+<p><span>学校：</span><%= @school.name %></p>
+<p><span>班级：</span><% case @k.grade %><% when "1" %>
+				一年级
+				<% when "2" %>
+				二年级
+				<% when "3" %>
+				三年级
+				<% when "4" %>
+				四年级
+				<% when "5" %>
+				五年级
+				<% when "6" %>
+				六年级
+				<% end %><%= @k.name %></p>
+<p><span>姓名：</span><%= f.text_field :name, :class => "ipt" %></p>
+<p><span>性别：</span><select name="member[gender]">
+	<option name="男">男</option>
+	<option name="女">女</option>
+	</select>
+</p>
+<p><span>入校时间：</span><%= f.text_field :in_time, :class => "ipt" %></p>
+<p><span>会员编号：</span><%= f.text_field :mem_no, :class => "ipt" %></p>
+<p><span>登录用户名：</span><%= f.text_field :login_name, :class => "ipt" %></p>
+<p><span>密码：</span><%= f.text_field :login_pwd, :class => "ipt" %></p>
+<p><input type="submit" name="submit" class="sbt" value="确定" /></p>
+<% end %>

@@ -1,0 +1,75 @@
+<% if session["role"] == 'admin' %>
+		<div class="panel">
+			<div class="panel-t"><a href="/schools">学校列表</a> &gt;&gt; <%= link_to @school.name, school_ks_path(@school) %> &gt;&gt; <%= link_to @k.name, school_k_members_path(@school, @k) %> &gt;&gt; <%= @member.name %></div>
+			<div class="panel-con">
+				<p class="link_btn"><%= link_to '返回', school_k_members_path(@school, @k) %><%= link_to '添加', new_check_path(member_id: @member.id) %></p>
+				<div class="members-list">
+					<table>
+						<thead>
+							<tr>
+								<th style="width:180px;">检查时间</th>
+								<th style="width:180px;">检查结果</th>
+								<th>干预方案</th>
+								<th style="width:180px;">管理</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @checks.each do |check| %>
+							<tr>
+								<td><%= check.check_date %></td>
+								<td><%= check.check_result %></td>
+								<td>
+									<% if !check.intervention.blank? %>
+										<%= link_to '干预方案', check_intervention_edit_url(check, member_id: @member.id) %>
+									<% else %>
+										<%= link_to '干预方案', check_intervention_edit_url(check, member_id: @member.id), {style: "color:#FF0000;"} %>
+									<% end %>
+								</td>
+								<td>
+									<%= link_to '修改', edit_check_path(check, member_id: @member.id) %>
+									<%= link_to '删除', check_path(check, member_id: @member.id), method: :delete, data: { confirm: '确定删除吗？' } %>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+<% else %>
+		<div class="panel">
+			<div class="panel-t">视力检查记录</div>
+			<div class="panel-con">
+				<% if session["role"] == 'master' %>
+				<p class="link_btn"><%= link_to '返回', school_k_members_path(@school, @k) %></p>
+				<% end %>
+				<div class="member-con">
+					<table>
+						<thead>
+							<tr>
+								<th style="width:200px;">检查时间</th>
+								<th style="width:200px;">检查结果</th>
+								<th>相关</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @checks.each do |check| %>
+							<tr>
+								<td><%= check.check_date %></td>
+								<td><%= check.check_result %></td>
+								<td>
+									<%= link_to '检查纪录', check %>
+									<% if !check.intervention.blank? %>
+										<%= link_to '干预方案', check_intervention_url(check) %>
+									<% else %>
+										<%= link_to '干预方案', check_intervention_url(check), {style: "color:#FF0000;"} %>
+									<% end %>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+<% end %>

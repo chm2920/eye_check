@@ -1,0 +1,27 @@
+		<div class="panel">
+			<div class="panel-t">学校管理人员</div>
+			<div class="panel-con">
+				<p class="link_btn"><%= link_to '添加', new_master_path %></p>
+				<div class="members-list">
+					<table>
+						<thead>
+							<tr>
+								<th>用户名</th>
+								<th style="width:260px;">管理</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @masters.each do |master| %>
+							<tr>
+								<td><%= link_to master.login_name, edit_master_path(master) %></td>
+								<td>
+									<%= link_to '修改', edit_master_path(master) %>
+									<%= link_to '删除', master, method: :delete, data: { confirm: '确定删除吗？' } %>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
