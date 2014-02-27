@@ -60,7 +60,7 @@ class StartController < ApplicationController
       @err_msg = "用户名密码不能为空。"
     end
     if @login_rst != 1
-      render :action => "index"
+      render :action => "index", :layout => false
     end
   end
   
