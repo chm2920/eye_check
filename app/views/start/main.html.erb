@@ -137,7 +137,7 @@
 		<div class="panel-m10">
 			<div class="panel-t">视力波动曲线</div>
 			<div class="panel-con" style="padding:30px 30px 10px 30px;background:#FFF;">
-				<%= javascript_include_tag "jquery-1.10.2.min", "highcharts" %>
+				<%= javascript_include_tag "highcharts" %>
 				<div id="line-chart" style="margin:0 auto;width:100%;height:300px;"></div>
 				<script type="text/javascript">
 				var categories = [<%= @chart_data["categories"].map{|c|"'" + c + "'"}.join(',').html_safe %>];

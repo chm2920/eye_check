@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Member < ActiveRecord::Base
   
   belongs_to :school
@@ -27,6 +28,19 @@ class Member < ActiveRecord::Base
     data["series_l"].reverse!
     data["series_r"].reverse!
     data
+  end
+  
+  def last_check_result
+    result = false
+    checks = self.checks
+    if checks.length > 0
+      if checks.first.check_result == '正常'
+        result = true
+      end
+    else
+      result = true
+    end
+    result
   end
   
 end
