@@ -1,3 +1,4 @@
+#encoding: utf-8
 class MastersController < ApplicationController
   
   before_action :set_cur
@@ -20,18 +21,21 @@ class MastersController < ApplicationController
     @master = Master.new(master_params)
     m = Member.where(login_name: params[:master][:login_name])
     if !m.blank?
+      @schools = School.all
       @err_msg = "用户名重复"
       render action: 'new'
       return
     end
     ms = Master.where(login_name: params[:master][:login_name])
     if !ms.blank?
+      @schools = School.all
       @err_msg = "用户名重复"
       render action: 'new'
       return
     end
     ad = Admin.where(login_name: params[:master][:login_name])
     if !ad.blank?
+      @schools = School.all
       @err_msg = "用户名重复"
       render action: 'new'
       return
