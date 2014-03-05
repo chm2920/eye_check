@@ -17,19 +17,19 @@ class MembersController < ApplicationController
   
   def create
     @member = Member.new(member_params)
-    m = Member.where(login_name: params[:member][:login_name])
+    m = Member.where(login_name: params[:member][:login_name].strip)
     if !m.blank?
       @err_msg = "用户名已存在"
       render action: 'new'
       return
     end
-    ms = Master.where(login_name: params[:member][:login_name])
+    ms = Master.where(login_name: params[:member][:login_name].strip)
     if !ms.blank?
       @err_msg = "用户名已存在"
       render action: 'new'
       return
     end
-    ad = Admin.where(login_name: params[:member][:login_name])
+    ad = Admin.where(login_name: params[:member][:login_name].strip)
     if !ad.blank?
       @err_msg = "用户名已存在"
       render action: 'new'
@@ -45,19 +45,19 @@ class MembersController < ApplicationController
   end
 
   def update
-    m = Member.where(login_name: params[:member][:login_name])
+    m = Member.where(login_name: params[:member][:login_name].strip)
     if !m.blank?
       @err_msg = "用户名已存在"
       render action: 'edit'
       return
     end
-    ms = Master.where(login_name: params[:member][:login_name])
+    ms = Master.where(login_name: params[:member][:login_name].strip)
     if !ms.blank?
       @err_msg = "用户名已存在"
       render action: 'edit'
       return
     end
-    ad = Admin.where(login_name: params[:member][:login_name])
+    ad = Admin.where(login_name: params[:member][:login_name].strip)
     if !ad.blank?
       @err_msg = "用户名已存在"
       render action: 'edit'

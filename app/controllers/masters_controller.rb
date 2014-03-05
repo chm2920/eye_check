@@ -19,21 +19,21 @@ class MastersController < ApplicationController
   
   def create
     @master = Master.new(master_params)
-    m = Member.where(login_name: params[:master][:login_name])
+    m = Member.where(login_name: params[:master][:login_name].strip)
     if !m.blank?
       @schools = School.all
       @err_msg = "用户名已存在"
       render action: 'new'
       return
     end
-    ms = Master.where(login_name: params[:master][:login_name])
+    ms = Master.where(login_name: params[:master][:login_name].strip)
     if !ms.blank?
       @schools = School.all
       @err_msg = "用户名已存在"
       render action: 'new'
       return
     end
-    ad = Admin.where(login_name: params[:master][:login_name])
+    ad = Admin.where(login_name: params[:master][:login_name].strip)
     if !ad.blank?
       @schools = School.all
       @err_msg = "用户名已存在"
@@ -48,19 +48,19 @@ class MastersController < ApplicationController
   end
 
   def update
-    m = Member.where(login_name: params[:master][:login_name])
+    m = Member.where(login_name: params[:master][:login_name].strip)
     if !m.blank?
       @err_msg = "用户名已存在"
       render action: 'edit'
       return
     end
-    ms = Master.where(login_name: params[:master][:login_name])
+    ms = Master.where(login_name: params[:master][:login_name].strip)
     if !ms.blank?
       @err_msg = "用户名已存在"
       render action: 'edit'
       return
     end
-    ad = Admin.where(login_name: params[:master][:login_name])
+    ad = Admin.where(login_name: params[:master][:login_name].strip)
     if !ad.blank?
       @err_msg = "用户名已存在"
       render action: 'edit'
