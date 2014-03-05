@@ -18,6 +18,24 @@ class MastersController < ApplicationController
   
   def create
     @master = Master.new(master_params)
+    m = Member.where(login_name: params[:master][:login_name])
+    if !m.blank?
+      @err_msg = "用户名重复"
+      render action: 'new'
+      return
+    end
+    ms = Master.where(login_name: params[:master][:login_name])
+    if !ms.blank?
+      @err_msg = "用户名重复"
+      render action: 'new'
+      return
+    end
+    ad = Admin.where(login_name: params[:master][:login_name])
+    if !ad.blank?
+      @err_msg = "用户名重复"
+      render action: 'new'
+      return
+    end
     if @master.save
       redirect_to masters_url
     else
@@ -26,6 +44,24 @@ class MastersController < ApplicationController
   end
 
   def update
+    m = Member.where(login_name: params[:master][:login_name])
+    if !m.blank?
+      @err_msg = "用户名重复"
+      render action: 'edit'
+      return
+    end
+    ms = Master.where(login_name: params[:master][:login_name])
+    if !ms.blank?
+      @err_msg = "用户名重复"
+      render action: 'edit'
+      return
+    end
+    ad = Admin.where(login_name: params[:master][:login_name])
+    if !ad.blank?
+      @err_msg = "用户名重复"
+      render action: 'edit'
+      return
+    end
     if @master.update_attributes(master_params)
       redirect_to masters_url
     else

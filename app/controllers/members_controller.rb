@@ -1,10 +1,11 @@
+#encoding: utf-8
 class MembersController < ApplicationController
   
   before_action :find_school_k
   before_action :set_member, only: [:edit, :update, :destroy]
   
   def index
-    @members = Member.find(:all, :conditions => ["k_id = ?", @k.id], :order => "id asc")
+    @members = Member.find(:all, :conditions => ["k_id = ?", @k.id], :order => "id desc")
   end
 
   def new
@@ -16,6 +17,24 @@ class MembersController < ApplicationController
   
   def create
     @member = Member.new(member_params)
+    m = Member.where(login_name: params[:member][:login_name])
+    if !m.blank?
+      @err_msg = "用户名重复"
+      render action: 'new'
+      return
+    end
+    ms = Master.where(login_name: params[:member][:login_name])
+    if !ms.blank?
+      @err_msg = "用户名重复"
+      render action: 'new'
+      return
+    end
+    ad = Admin.where(login_name: params[:member][:login_name])
+    if !ad.blank?
+      @err_msg = "用户名重复"
+      render action: 'new'
+      return
+    end
     @member.school = @school
     @member.k = @k
     if @member.save
@@ -26,6 +45,24 @@ class MembersController < ApplicationController
   end
 
   def update
+    m = Member.where(login_name: params[:member][:login_name])
+    if !m.blank?
+      @err_msg = "用户名重复"
+      render action: 'edit'
+      return
+    end
+    ms = Master.where(login_name: params[:member][:login_name])
+    if !ms.blank?
+      @err_msg = "用户名重复"
+      render action: 'edit'
+      return
+    end
+    ad = Admin.where(login_name: params[:member][:login_name])
+    if !ad.blank?
+      @err_msg = "用户名重复"
+      render action: 'edit'
+      return
+    end
     if @member.update_attributes(member_params)
       redirect_to school_k_members_url(@school, @k)
     else

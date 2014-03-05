@@ -1,3 +1,6 @@
+<% if !@err_msg.nil? %>
+<p style="color:#FF0000;"><%= @err_msg %></p>
+<% end %>
 <%= form_for(@master) do |f| %>
 <p><span>学校：</span><select name="master[school_id]">
 	<% @schools.each do |school| %>

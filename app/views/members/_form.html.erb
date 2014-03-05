@@ -1,3 +1,6 @@
+<% if !@err_msg.nil? %>
+<p style="color:#FF0000;"><%= @err_msg %></p>
+<% end %>
 <%= form_for([@school, @k, @member]) do |f| %>
 <p><span>学校：</span><%= @school.name %></p>
 <p><span>班级：</span><% case @k.grade %><% when "1" %>
