@@ -32,7 +32,8 @@
 				<% end %>
 			</div>
 		</div>
-<% else %>
+<% end %>
+<% if session[:role] == 'master' %>
 		<div class="panel">
 			<div class="panel-t"><%= @school.name %></div>
 			<div class="panel-con">
