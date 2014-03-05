@@ -19,19 +19,19 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
     m = Member.where(login_name: params[:member][:login_name])
     if !m.blank?
-      @err_msg = "用户名重复"
+      @err_msg = "用户名已存在"
       render action: 'new'
       return
     end
     ms = Master.where(login_name: params[:member][:login_name])
     if !ms.blank?
-      @err_msg = "用户名重复"
+      @err_msg = "用户名已存在"
       render action: 'new'
       return
     end
     ad = Admin.where(login_name: params[:member][:login_name])
     if !ad.blank?
-      @err_msg = "用户名重复"
+      @err_msg = "用户名已存在"
       render action: 'new'
       return
     end
@@ -47,19 +47,19 @@ class MembersController < ApplicationController
   def update
     m = Member.where(login_name: params[:member][:login_name])
     if !m.blank?
-      @err_msg = "用户名重复"
+      @err_msg = "用户名已存在"
       render action: 'edit'
       return
     end
     ms = Master.where(login_name: params[:member][:login_name])
     if !ms.blank?
-      @err_msg = "用户名重复"
+      @err_msg = "用户名已存在"
       render action: 'edit'
       return
     end
     ad = Admin.where(login_name: params[:member][:login_name])
     if !ad.blank?
-      @err_msg = "用户名重复"
+      @err_msg = "用户名已存在"
       render action: 'edit'
       return
     end
