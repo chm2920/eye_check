@@ -2,7 +2,11 @@
 		<div class="panel">
 			<div class="panel-t">第一次检查</div>
 			<div class="panel-con">
+				<% if session[:role] == 'member' %>
 				<p class="link_btn"><a href="/checks">返回</a></p>
+				<% else %>
+				<p class="link_btn"><a href="/checks?member_id=<%= @member.id %>">返回</a></p>
+				<% end %>
 				<div class="member-con">
 					<table>
 						<tr>
@@ -94,7 +98,11 @@
 		<div class="panel">
 			<div class="panel-t">检查记录</div>
 			<div class="panel-con">
+				<% if session[:role] == 'member' %>
 				<p class="link_btn"><a href="/checks">返回</a></p>
+				<% else %>
+				<p class="link_btn"><a href="/checks?member_id=<%= @member.id %>">返回</a></p>
+				<% end %>
 				<div class="member-con">
 					<table>
 						<tr>

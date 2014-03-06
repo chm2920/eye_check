@@ -38,10 +38,10 @@
 								<td><%= member.gender %></td>
 								<% if check %>
 								<td>
-									<%= link_to check.check_date, check_intervention_url(check, member_id: member.id) %>
+									<%= link_to check.check_date, check_intervention_edit_url(check, member_id: member.id) %>
 								</td>
 								<td>
-									<%= link_to check.check_result, check_intervention_url(check, member_id: member.id) %>
+									<%= link_to check.check_result, check_intervention_edit_url(check, member_id: member.id) %>
 								</td>
 								<% else %>
 								<td>

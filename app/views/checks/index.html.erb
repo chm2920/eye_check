@@ -58,11 +58,11 @@
 								<td><%= check.check_date %></td>
 								<td><%= check.check_result %></td>
 								<td>
-									<%= link_to '检查纪录', check %>
+									<%= link_to '检查纪录', check_url(check, member_id: @member.id) %>
 									<% if !check.intervention.blank? %>
-										<%= link_to '干预方案', check_intervention_url(check) %>
+										<%= link_to '干预方案', check_intervention_url(check, member_id: @member.id) %>
 									<% else %>
-										<%= link_to '干预方案', check_intervention_url(check), {style: "color:#FF0000;"} %>
+										<%= link_to '干预方案', check_intervention_url(check, member_id: @member.id), {style: "color:#FF0000;"} %>
 									<% end %>
 								</td>
 							</tr>
