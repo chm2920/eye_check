@@ -3,6 +3,7 @@
 			<div class="panel-con">
 				<p class="link_btn"><a href="/checks">返回</a></p>
 				<div class="member-con">
+					<% if !@intervention.nil? %>
 					<% case @check.check_result %>
 					<% when "正常" %>
 					<table>
@@ -290,6 +291,9 @@
 							<td><%= @intervention["other"] %></td>
 						</tr>
 					</table>
+					<% end %>
+					<% else %>
+					<p>还没有内容。</p>
 					<% end %>
 				</div>
 			</div>
