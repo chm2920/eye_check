@@ -95,4 +95,52 @@
 				</div>
 			</div>
 		</div>
+<% if session[:role] == 'master' %>
+		<div class="panel-m10">
+			<div class="panel-t">近视率（共 <%= @total %> 人，近视 <%= @js %> 人，弱视 <%= @rs %> 人）</div>
+			<div class="panel-con" style="padding:30px 30px 10px 30px;background:#FFF;">
+				<%= javascript_include_tag "highcharts" %>
+				<div id="chart-con" style="margin:0 auto;width:100%;height:300px;"></div>
+				<script type="text/javascript">
+				var s_categories = [<%= @chart_data["categories"].map{|c|"'" + c + "'"}.join(',').html_safe %>];
+				if(s_categories.length){
+					$(function () {
+				        $('#chart-con').highcharts({
+				            chart: {
+				                type: 'column'
+				            },
+				            title : {
+				            	text : ''
+				            },
+				            xAxis: {
+				                categories: s_categories
+				            },
+				            yAxis: {
+				                min: 0,
+				                title: {
+				                    text: ''
+				                }
+				            },
+				            tooltip: {
+				                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+				                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+				                footerFormat: '</table>',
+				                shared: true,
+				                useHTML: true
+				            },
+				            series: [{
+				            	name : '近视率',
+				            	data : [<%= @chart_data["js"].join(',').html_safe %>]
+				            }, {
+				            	name : '弱视率',
+				            	data : [<%= @chart_data["rs"].join(',').html_safe %>]
+				            }]
+				        });
+				    });
+			   	}
+				</script>
+			</div>
+		</div>
+<% end %>
 <% end %>

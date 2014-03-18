@@ -8,9 +8,18 @@ class KsController < ApplicationController
     @ks = K.where(school_id: @school.id).order("grade asc").group_by{|k|k.grade}
     
     if session[:role] == 'master'
+      @school_data = {}
+      @school_data["categories"] = [@school.name]
+      @school_data["js"] = []
+      @school_data["rs"] = []
+      total = 0
+      js = 0
+      rs = 0
+      
       @chart_data = {}
       @chart_data["categories"] = []
-      @chart_data["series"] = []
+      @chart_data["js"] = []
+      @chart_data["rs"] = []
       @ks.each do |grade, _ks|
         case grade
         when "1"
@@ -27,22 +36,40 @@ class KsController < ApplicationController
           @chart_data["categories"] << "六年级"
         end
         
-        total = 0
-        jinshi = 0
+        g_total = 0
+        g_js = 0
+        g_rs = 0
         _ks.each do |k|
           members = k.members
+          g_total += members.length
           total += members.length
           members.each do |member|
-            if !member.last_check_result
-              jinshi += 1
+            if member.last_check_rst
+              if member.last_check_rst == '近视'
+                g_js += 1
+                js += 1
+              end
+              if member.last_check_rst == '弱视'
+                g_rs += 1
+                rs += 1
+              end
             end
           end
         end
-        if total == 0
-          @chart_data["series"].push(0)
+        if g_total == 0
+          @chart_data["js"] << 0
+          @chart_data["rs"] << 0
         else
-          @chart_data["series"].push(jinshi * 100 / total)
+          @chart_data["js"] << g_js * 100 / g_total
+          @chart_data["rs"] << g_rs * 100 / g_total
         end
+      end
+      if total == 0
+        @school_data["js"] << 0
+        @school_data["rs"] << 0
+      else
+        @school_data["js"] << js * 100 / total
+        @school_data["rs"] << rs * 100 / total
       end
     end
   end

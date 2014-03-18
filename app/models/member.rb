@@ -30,15 +30,15 @@ class Member < ActiveRecord::Base
     data
   end
   
-  def last_check_result
+  def last_check_rst
     result = false
     checks = self.checks
     if checks.length > 0
-      if checks.first.check_result == '正常'
-        result = true
+      if checks.first.check_result == '近视' || checks.first.check_result == '弱视'
+        result = checks.first.check_result
       end
     else
-      result = true
+      result = false
     end
     result
   end

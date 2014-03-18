@@ -6,6 +6,35 @@ class MembersController < ApplicationController
   
   def index
     @members = Member.find(:all, :conditions => ["k_id = ?", @k.id], :order => "id desc")
+    if session[:role] == 'master'
+      @chart_data = {}
+      @chart_data["categories"] = [@k.name]
+      @chart_data["js"] = []
+      @chart_data["rs"] = []
+      
+      @total = @members.length
+      @js = 0
+      @rs = 0
+      
+      @members.each do |member|
+        if member.last_check_rst
+          if member.last_check_rst == '近视'
+            @js += 1
+          end
+          if member.last_check_rst == '弱视'
+            @rs += 1
+          end
+        end
+      end
+      
+      if @total == 0
+        @chart_data["js"] << 0
+        @chart_data["rs"] << 0
+      else
+        @chart_data["js"] << @js * 100 / @total
+        @chart_data["rs"] << @rs * 100 / @total
+      end
+    end
   end
 
   def new
