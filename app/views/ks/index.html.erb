@@ -68,12 +68,18 @@
 				<%= javascript_include_tag "highcharts" %>
 				<div id="chart-con" style="margin:0 auto;width:100%;height:300px;"></div>
 				<script type="text/javascript">
-				var s_categories = [<%= @school_data["categories"].map{|c|"'" + c + "'"}.join(',').html_safe %>];
+				<%
+					arr = []
+					0.upto @school_data["js"].length - 1 do |i|
+						arr << '第' + (i + 1).to_s + '次'
+					end
+				%>
+				var s_categories = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
 				if(s_categories.length){
 					$(function () {
 				        $('#chart-con').highcharts({
 				            chart: {
-				                type: 'column'
+				                type: 'line'
 				            },
 				            title : {
 				            	text : ''
@@ -114,12 +120,18 @@
 				<%= javascript_include_tag "highcharts" %>
 				<div id="chart-con2" style="margin:0 auto;width:100%;height:300px;"></div>
 				<script type="text/javascript">
-				var categories = [<%= @chart_data["categories"].map{|c|"'" + c + "'"}.join(',').html_safe %>];
+				<%
+					arr = []
+					0.upto @school_data["js"].length - 1 do |i|
+						arr << '第' + (i + 1).to_s + '次'
+					end
+				%>
+				var categories = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
 				if(categories.length){
 					$(function () {
 				        $('#chart-con2').highcharts({
 				            chart: {
-				                type: 'column'
+				                type: 'line'
 				            },
 				            title : {
 				            	text : ''
@@ -141,13 +153,53 @@
 				                shared: true,
 				                useHTML: true
 				            },
-				            series: [{
-				            	name : '近视率',
-				            	data : [<%= @chart_data["js"].join(',').html_safe %>]
-				            }, {
-				            	name : '弱视率',
-				            	data : [<%= @chart_data["rs"].join(',').html_safe %>]
-				            }]
+				            series: [<%= @chart_data.map{|t|"{name:'" + t["name"] + "',data:[" + t["js"].join(",") + "]}"}.join(",").html_safe %>]
+				        });
+				    });
+			   	}
+				</script>
+			</div>
+		</div>
+		<div class="panel-m10">
+			<div class="panel-t">年级弱视率</div>
+			<div class="panel-con" style="padding:30px 30px 10px 30px;background:#FFF;">
+				<%= javascript_include_tag "highcharts" %>
+				<div id="chart-con3" style="margin:0 auto;width:100%;height:300px;"></div>
+				<script type="text/javascript">
+				<%
+					arr = []
+					0.upto @school_data["rs"].length - 1 do |i|
+						arr << '第' + (i + 1).to_s + '次'
+					end
+				%>
+				categories = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
+				if(categories.length){
+					$(function () {
+				        $('#chart-con3').highcharts({
+				            chart: {
+				                type: 'line'
+				            },
+				            title : {
+				            	text : ''
+				            },
+				            xAxis: {
+				                categories: categories
+				            },
+				            yAxis: {
+				                min: 0,
+				                title: {
+				                    text: ''
+				                }
+				            },
+				            tooltip: {
+				                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+				                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+				                footerFormat: '</table>',
+				                shared: true,
+				                useHTML: true
+				            },
+				            series: [<%= @chart_data.map{|t|"{name:'" + t["name"] + "',data:[" + t["rs"].join(",") + "]}"}.join(",").html_safe %>]
 				        });
 				    });
 			   	}

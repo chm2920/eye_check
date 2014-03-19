@@ -5,34 +5,47 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:edit, :update, :destroy]
   
   def index
-    @members = Member.find(:all, :conditions => ["k_id = ?", @k.id], :order => "id desc")
+    @members = Member.find(:all, :conditions => ["k_id = ?", @k.id], :order => "id asc")
     if session[:role] == 'master'
+      l_checks = @members.last.checks.length - 1
       @chart_data = {}
-      @chart_data["categories"] = [@k.name]
       @chart_data["js"] = []
       @chart_data["rs"] = []
       
       @total = @members.length
-      @js = 0
-      @rs = 0
+      0.upto l_checks do
+        @chart_data["js"] << 0
+      end
+      0.upto l_checks do
+        @chart_data["rs"] << 0
+      end
       
       @members.each do |member|
-        if member.last_check_rst
-          if member.last_check_rst == '近视'
-            @js += 1
+        member.check_rsts.each_with_index do |rst, i|
+          if rst.check_result == '近视' #&& i <= l_checks
+            if @chart_data["js"][i]
+              @chart_data["js"][i] += 1
+            else
+              @chart_data["js"] << 1
+            end
           end
-          if member.last_check_rst == '弱视'
-            @rs += 1
+          if rst.check_result == '弱视'
+            if @chart_data["rs"][i]
+              @chart_data["rs"][i] += 1
+            else
+              @chart_data["rs"] << 1
+            end
           end
         end
       end
       
-      if @total == 0
-        @chart_data["js"] << 0
-        @chart_data["rs"] << 0
-      else
-        @chart_data["js"] << @js * 100 / @total
-        @chart_data["rs"] << @rs * 100 / @total
+      if @total != 0
+        @chart_data["js"].each_with_index do |js, i|
+          @chart_data["js"][i] = js * 100 / @total
+        end
+        @chart_data["rs"].each_with_index do |rs, i|
+          @chart_data["rs"][i] = rs * 100 / @total
+        end
       end
     end
   end

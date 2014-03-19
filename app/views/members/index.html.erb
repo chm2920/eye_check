@@ -64,7 +64,21 @@
 		</div>
 <% else %>
 		<div class="panel">
-			<div class="panel-t">近视率查询</div>
+			<div class="panel-t">
+				<% case @k.grade %>
+				<% when "1" %>
+				一年级
+				<% when "2" %>
+				二年级
+				<% when "3" %>
+				三年级
+				<% when "4" %>
+				四年级
+				<% when "5" %>
+				五年级
+				<% when "6" %>
+				六年级
+				<% end %><%= @k.name %> 近视率查询</div>
 			<div class="panel-con">
 				<p class="link_btn"><a href="/main">返回</a></p>
 				<div class="member-con">
@@ -97,17 +111,23 @@
 		</div>
 <% if session[:role] == 'master' %>
 		<div class="panel-m10">
-			<div class="panel-t">近视率（共 <%= @total %> 人，近视 <%= @js %> 人，弱视 <%= @rs %> 人）</div>
+			<div class="panel-t">共 <%= @total %> 人</div>
 			<div class="panel-con" style="padding:30px 30px 10px 30px;background:#FFF;">
 				<%= javascript_include_tag "highcharts" %>
 				<div id="chart-con" style="margin:0 auto;width:100%;height:300px;"></div>
 				<script type="text/javascript">
-				var s_categories = [<%= @chart_data["categories"].map{|c|"'" + c + "'"}.join(',').html_safe %>];
+				<%
+					arr = []
+					0.upto @chart_data["js"].length - 1 do |i|
+						arr << '第' + (i + 1).to_s + '次'
+					end
+				%>
+				var s_categories = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
 				if(s_categories.length){
 					$(function () {
 				        $('#chart-con').highcharts({
 				            chart: {
-				                type: 'column'
+				                type: 'line'
 				            },
 				            title : {
 				            	text : ''

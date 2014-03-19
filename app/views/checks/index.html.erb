@@ -38,7 +38,7 @@
 		</div>
 <% else %>
 		<div class="panel">
-			<div class="panel-t">视力检查记录</div>
+			<div class="panel-t"><%= @member.name %> 视力检查记录</div>
 			<div class="panel-con">
 				<% if session["role"] == 'master' %>
 				<p class="link_btn"><%= link_to '返回', school_k_members_path(@school, @k) %></p>

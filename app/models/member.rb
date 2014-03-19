@@ -30,6 +30,11 @@ class Member < ActiveRecord::Base
     data
   end
   
+  def check_rsts
+    checks = self.checks(limit: 12).reverse
+    checks
+  end
+  
   def last_check_rst
     result = false
     checks = self.checks

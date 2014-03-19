@@ -8,68 +8,101 @@ class KsController < ApplicationController
     @ks = K.where(school_id: @school.id).order("grade asc").group_by{|k|k.grade}
     
     if session[:role] == 'master'
+      l_checks = Member.last.checks.length - 1
       @school_data = {}
-      @school_data["categories"] = [@school.name]
       @school_data["js"] = []
+      0.upto l_checks do
+        @school_data["js"] << 0
+      end
       @school_data["rs"] = []
+      0.upto l_checks do
+        @school_data["rs"] << 0
+      end
       total = 0
-      js = 0
-      rs = 0
       
-      @chart_data = {}
-      @chart_data["categories"] = []
-      @chart_data["js"] = []
-      @chart_data["rs"] = []
+      @chart_data = []
       @ks.each do |grade, _ks|
+        data = {}
+        
         case grade
         when "1"
-          @chart_data["categories"] << "一年级"
+          data["name"] = "一年级"
         when "2"
-          @chart_data["categories"] << "二年级"
+          data["name"] = "二年级"
         when "3"
-          @chart_data["categories"] << "三年级"
+          data["name"] = "三年级"
         when "4"
-          @chart_data["categories"] << "四年级"
+          data["name"] = "四年级"
         when "5"
-          @chart_data["categories"] << "五年级"
+          data["name"] = "五年级"
         when "6"
-          @chart_data["categories"] << "六年级"
+          data["name"] = "六年级"
+        end
+        
+        data["js"] = []
+        0.upto l_checks do
+          data["js"] << 0
+        end
+        data["rs"] = []
+        0.upto l_checks do
+          data["rs"] << 0
         end
         
         g_total = 0
-        g_js = 0
-        g_rs = 0
         _ks.each do |k|
           members = k.members
           g_total += members.length
           total += members.length
           members.each do |member|
-            if member.last_check_rst
-              if member.last_check_rst == '近视'
-                g_js += 1
-                js += 1
+            member.check_rsts.each_with_index do |rst, i|
+              if rst.check_result == '近视' #&& i <= l_checks
+                if data["js"][i]
+                  data["js"][i] += 1
+                else
+                  data["js"] << 1
+                end
               end
-              if member.last_check_rst == '弱视'
-                g_rs += 1
-                rs += 1
+              if rst.check_result == '弱视'
+                if data["rs"][i]
+                  data["rs"][i] += 1
+                else
+                  data["rs"] << 1
+                end
               end
             end
           end
         end
-        if g_total == 0
-          @chart_data["js"] << 0
-          @chart_data["rs"] << 0
-        else
-          @chart_data["js"] << g_js * 100 / g_total
-          @chart_data["rs"] << g_rs * 100 / g_total
+        data["js"].each_with_index do |js, i|
+          if @school_data["js"][i]
+            @school_data["js"][i] += js
+          else
+            @school_data["js"] << js
+          end
         end
+        data["rs"].each_with_index do |rs, i|
+          if @school_data["rs"][i]
+            @school_data["rs"][i] += rs
+          else
+            @school_data["rs"] << rs
+          end
+        end
+        if g_total != 0
+          data["js"].each_with_index do |js, i|
+            data["js"][i] = js * 100 / g_total
+          end
+          data["rs"].each_with_index do |rs, i|
+            data["rs"][i] = rs * 100 / g_total
+          end
+        end
+        @chart_data << data
       end
-      if total == 0
-        @school_data["js"] << 0
-        @school_data["rs"] << 0
-      else
-        @school_data["js"] << js * 100 / total
-        @school_data["rs"] << rs * 100 / total
+      if total != 0
+        @school_data["js"].each_with_index do |js, i|
+          @school_data["js"][i] = js * 100 / total
+        end
+        @school_data["rs"].each_with_index do |rs, i|
+          @school_data["rs"][i] = rs * 100 / total
+        end
       end
     end
   end
