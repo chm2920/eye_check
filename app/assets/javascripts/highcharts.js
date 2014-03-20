@@ -313,7 +313,10 @@ Highcharts.setOptions({
 		                fontSize: '12px'
 		            },
 		            x: 0,
-		            y: 20
+		            y: 20,
+                	formatter : function(){
+                		return '第' + this.value + '次';
+                	}
 		        }
 		    },
 		    yAxis: {
@@ -330,7 +333,10 @@ Highcharts.setOptions({
 		                color: '#222',
 		                fontFamily:"'Tahoma', 'Microsoft Yahei', 'SimSun','sans-serif'",
 		                fontSize: '12px'
-		            }
+		            },
+                	formatter : function(){
+                		return this.value + '%';
+                	}
 		        }
 		    },
 		    tooltip: {

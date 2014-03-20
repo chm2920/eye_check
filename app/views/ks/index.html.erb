@@ -71,7 +71,7 @@
 				<%
 					arr = []
 					0.upto @school_data["js"].length - 1 do |i|
-						arr << '第' + (i + 1).to_s + '次'
+						arr << (i + 1).to_s
 					end
 				%>
 				var s_categories = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
@@ -123,7 +123,7 @@
 				<%
 					arr = []
 					0.upto @school_data["js"].length - 1 do |i|
-						arr << '第' + (i + 1).to_s + '次'
+						arr << (i + 1).to_s
 					end
 				%>
 				var categories2 = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
@@ -169,7 +169,7 @@
 				<%
 					arr = []
 					0.upto @school_data["rs"].length - 1 do |i|
-						arr << '第' + (i + 1).to_s + '次'
+						arr << (i + 1).to_s
 					end
 				%>
 				var categories3 = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
