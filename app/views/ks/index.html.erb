@@ -126,8 +126,8 @@
 						arr << '第' + (i + 1).to_s + '次'
 					end
 				%>
-				var categories = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
-				if(categories.length){
+				var categories2 = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
+				if(categories2.length){
 					$(function () {
 				        $('#chart-con2').highcharts({
 				            chart: {
@@ -137,7 +137,7 @@
 				            	text : ''
 				            },
 				            xAxis: {
-				                categories: categories
+				                categories: categories2
 				            },
 				            yAxis: {
 				                min: 0,
@@ -172,8 +172,8 @@
 						arr << '第' + (i + 1).to_s + '次'
 					end
 				%>
-				categories = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
-				if(categories.length){
+				var categories3 = [<%= arr.map{|t| "'" + t + "'"}.join(',').html_safe %>];
+				if(categories3.length){
 					$(function () {
 				        $('#chart-con3').highcharts({
 				            chart: {
@@ -183,7 +183,7 @@
 				            	text : ''
 				            },
 				            xAxis: {
-				                categories: categories
+				                categories: categories3
 				            },
 				            yAxis: {
 				                min: 0,

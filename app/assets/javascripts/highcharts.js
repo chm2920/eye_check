@@ -283,3 +283,110 @@ s._pos)E=s._attr.visibility,z=s.connX,A=s.connY,j=k?["M",z+(w[6]==="left"?5:-5),
 80,f;d[0]!==null?e=r(b[2]-r(a[1],a[3]),c):(e=r(b[2]-a[1]-a[3],c),b[0]+=(a[3]-a[1])/2);d[1]!==null?e=r(J(e,b[2]-r(a[0],a[2])),c):(e=r(J(e,b[2]-a[0]-a[2]),c),b[1]+=(a[0]-a[2])/2);e<b[2]?(b[2]=e,this.translate(b),n(this.points,function(a){if(a.dataLabel)a.dataLabel._pos=null}),this.drawDataLabels()):f=!0;return f},placeDataLabels:function(){n(this.points,function(a){var a=a.dataLabel,b;if(a)(b=a._pos)?(a.attr(a._attr),a[a.moved?"animate":"attr"](b),a.moved=!0):a&&a.attr({y:-999})})},alignDataLabel:oa,
 drawTracker:F.prototype.drawTracker,drawLegendSymbol:G.prototype.drawLegendSymbol,getSymbol:oa};Y=ha(Q,Y);X.pie=Y;s(Highcharts,{Axis:eb,Chart:yb,Color:qa,Legend:fb,Pointer:xb,Point:Pa,Tick:Ma,Tooltip:wb,Renderer:Va,Series:Q,SVGElement:va,SVGRenderer:za,arrayMin:Ja,arrayMax:ua,charts:Ga,dateFormat:Ya,format:Ca,pathAnim:Ab,getOptions:function(){return L},hasBidiBug:Ub,isTouchDevice:Ob,numberFormat:Aa,seriesTypes:X,setOptions:function(a){L=x(L,a);Lb();return L},addEvent:K,removeEvent:$,createElement:U,
 discardElement:Ta,css:I,each:n,extend:s,map:Na,merge:x,pick:o,splat:ja,extendClass:ha,pInt:y,wrap:mb,svg:W,canvas:ca,vml:!W&&!ca,product:"Highcharts",version:"3.0.7"})})();
+
+Highcharts.setOptions({
+			chart : {
+		        backgroundColor: "",
+		        plotBackgroundColor: null,
+		        plotBorderWidth: null,
+		        plotShadow: false
+			},
+		    title: {
+		        text: ""
+		    },
+		    subtitle: {
+		        text: ''
+		    },
+		    xAxis: {
+		    	gridLineColor: '#c7c7c7',
+		    	gridLineDashStyle: 'Dot',
+		    	gridLineWidth: 1,
+		    	tickmarkPlacement: 'on',
+		        showLastLabel : true,
+		        lineWidth: 2,
+		        lineColor: '#a4a5a6',
+		        tickColor: 'black',
+		        labels: {
+		            style: {
+		                color: '#222',
+		                fontFamily:"'Tahoma', 'Microsoft Yahei', 'SimSun','sans-serif'",
+		                fontSize: '12px'
+		            },
+		            x: 0,
+		            y: 20
+		        }
+		    },
+		    yAxis: {
+		    	gridLineColor: '#c7c7c7',
+		    	gridLineDashStyle: 'Dot',
+		    	gridLineWidth: 1,
+		        title: {
+		            text: null
+		        },
+		        lineWidth: 2,
+		        lineColor: '#a4a5a6',
+		        labels: {
+		            style: {
+		                color: '#222',
+		                fontFamily:"'Tahoma', 'Microsoft Yahei', 'SimSun','sans-serif'",
+		                fontSize: '12px'
+		            }
+		        }
+		    },
+		    tooltip: {
+		    	shared: true,
+		    	followPointer: true,
+		        crosshairs: true
+		    },
+		    legend: {
+		    	margin: 18,
+		    	maxHeight:83,  
+			    borderColor: '#e9e9e9',
+			    borderRadius: 0,
+			    borderWidth: 1,
+			    symbolPadding: 5,
+			    symbolWidth: 12,
+			    padding: 6,
+			    itemStyle: {
+			        fontFamily:"'Tahoma', 'Microsoft Yahei', 'SimSun','sans-serif'",
+			        fontWeight:'normal',
+			        fontSize:'12px',
+			        cursor:'pointer',
+			        color:'#222',
+			        fill:'#222'
+			    },
+			    itemHoverStyle: {
+			        color:'#274b6d',
+			        fill:'#274b6d'
+			    }
+		    },
+		    plotOptions: {
+		    	line : {
+		    		marker : {
+		    			symbol : 'circle'
+		    		}
+		    	},
+		    	series: {
+		            borderWidth : 0,
+		            pointPadding: 0,
+		            lineWidth : 2,
+		            dataLabels : {
+		            	y : -2
+		            },
+		            animation: {
+		                duration: 1000
+		            }
+		        }
+		    },
+			credits: {
+		        enabled: false
+		    },
+		    exporting: {
+		    	enabled : false,
+		    	type: "image/jpeg",
+				url: "http://export.highcharts.com/"
+		    },
+		    colors: ["#0093D7", "#00CFB4", "#EC5484", "#76C8EC", "#E169BD",
+		                  "#FFB975", "#8786C1", "#EA746A", "#00BFD6", "#D18C61",
+		                  "#8C5D9D", "#36B7E5", "#8A9A37", "#847DCD", "#B5B5E7"]
+		});
