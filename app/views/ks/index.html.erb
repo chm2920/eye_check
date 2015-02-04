@@ -70,7 +70,7 @@
 				<script type="text/javascript">
 				<%
 					arr = []
-					0.upto @school_data["js"].length - 1 do |i|
+					0.upto @school_data["member"].length - 1 do |i|
 						arr << (i + 1).to_s
 					end
 				%>
@@ -94,7 +94,7 @@
 				                }
 				            },
 				            tooltip: {
-				                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				                headerFormat: '<span style="font-size:10px">第{point.key}次</span><table>',
 				                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
 				                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
 				                footerFormat: '</table>',
@@ -103,15 +103,20 @@
 				            },
 				            series: [{
 				            	name : '近视率',
-				            	data : [<%= @school_data["js"].join(',').html_safe %>]
+				            	data : [<%= @jingshi_data.join(',').html_safe %>]
 				            }, {
 				            	name : '弱视率',
-				            	data : [<%= @school_data["rs"].join(',').html_safe %>]
+				            	data : [<%= @ruoshi_data.join(',').html_safe %>]
 				            }]
 				        });
 				    });
 			   	}
 				</script>
+				<div style="padding-bottom:30px;">
+					<% 0.upto @school_data["member"].length - 1 do |i| %>
+					<p>第 <%= (i + 1).to_s %> 次 : 共测试 <%= @school_data["member"][i] %> 人 近视 <%= @school_data["jingshi"][i] %> 人 弱视 <%= @school_data["ruoshi"][i] %> 人</p>
+					<% end %>
+				</div>
 			</div>
 		</div>
 		<div class="panel-m10">
@@ -122,7 +127,7 @@
 				<script type="text/javascript">
 				<%
 					arr = []
-					0.upto @school_data["js"].length - 1 do |i|
+					0.upto @school_data["member"].length - 1 do |i|
 						arr << (i + 1).to_s
 					end
 				%>
@@ -146,18 +151,25 @@
 				                }
 				            },
 				            tooltip: {
-				                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				                headerFormat: '<span style="font-size:10px">第{point.key}次</span><table>',
 				                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
 				                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
 				                footerFormat: '</table>',
 				                shared: true,
 				                useHTML: true
 				            },
-				            series: [<%= @chart_data.map{|t|"{name:'" + t["name"] + "',data:[" + t["js"].join(",") + "]}"}.join(",").html_safe %>]
+				            series: [<%= @grade_jingshi_data.map{|t|"{name:'" + t["name"] + "',data:[" + t["js"].join(",") + "]}"}.join(",").html_safe %>]
 				        });
 				    });
 			   	}
 				</script>
+				<div style="padding-bottom:30px;">
+					<% 0.upto @school_data["jingshi"].length - 1 do |i| %>
+					<p>第 <%= (i + 1).to_s %> 次 : 近视 <%= @school_data["jingshi"][i] %> 人 
+						<%= @grade_jingshi.map{|t|t["name"] + " " + t["js"][i].to_s + "人"}.join(" ") %>
+					</p>
+					<% end %>
+				</div>
 			</div>
 		</div>
 		<div class="panel-m10">
@@ -168,7 +180,7 @@
 				<script type="text/javascript">
 				<%
 					arr = []
-					0.upto @school_data["rs"].length - 1 do |i|
+					0.upto @school_data["member"].length - 1 do |i|
 						arr << (i + 1).to_s
 					end
 				%>
@@ -192,18 +204,25 @@
 				                }
 				            },
 				            tooltip: {
-				                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				                headerFormat: '<span style="font-size:10px">第{point.key}次</span><table>',
 				                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
 				                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
 				                footerFormat: '</table>',
 				                shared: true,
 				                useHTML: true
 				            },
-				            series: [<%= @chart_data.map{|t|"{name:'" + t["name"] + "',data:[" + t["rs"].join(",") + "]}"}.join(",").html_safe %>]
+				            series: [<%= @grade_ruoshi_data.map{|t|"{name:'" + t["name"] + "',data:[" + t["rs"].join(",") + "]}"}.join(",").html_safe %>]
 				        });
 				    });
 			   	}
 				</script>
+				<div style="padding-bottom:30px;">
+					<% 0.upto @school_data["ruoshi"].length - 1 do |i| %>
+					<p>第 <%= (i + 1).to_s %> 次 : 弱视 <%= @school_data["ruoshi"][i] %> 人 
+						<%= @grade_ruoshi.map{|t|t["name"] + " " + t["rs"][i].to_s + "人"}.join(" ") %>
+					</p>
+					<% end %>
+				</div>
 			</div>
 		</div>
 <% end %>

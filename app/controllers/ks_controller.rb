@@ -8,102 +8,141 @@ class KsController < ApplicationController
     @ks = K.where(school_id: @school.id).order("grade asc").group_by{|k|k.grade}
     
     if session[:role] == 'master'
-      l_checks = Member.last.checks.length - 1
-      @school_data = {}
-      @school_data["js"] = []
-      0.upto l_checks do
-        @school_data["js"] << 0
-      end
-      @school_data["rs"] = []
-      0.upto l_checks do
-        @school_data["rs"] << 0
-      end
-      total = 0
       
-      @chart_data = []
+      @school_data = {}
+      @school_data["jingshi"] = []
+      @school_data["ruoshi"] = []
+      @school_data["member"] = []
+      
+      @grade_jingshi = []
+      @grade_ruoshi = []
+      
+      data = {}
       @ks.each do |grade, _ks|
-        data = {}
-        
+        data[grade] = {}
+        data[grade]["jingshi"] = {}
+        data[grade]["ruoshi"] = {}
+        data[grade]["member"] = {}
         case grade
         when "1"
-          data["name"] = "一年级"
+          data[grade]["name"] = "一年级"
         when "2"
-          data["name"] = "二年级"
+          data[grade]["name"] = "二年级"
         when "3"
-          data["name"] = "三年级"
+          data[grade]["name"] = "三年级"
         when "4"
-          data["name"] = "四年级"
+          data[grade]["name"] = "四年级"
         when "5"
-          data["name"] = "五年级"
+          data[grade]["name"] = "五年级"
         when "6"
-          data["name"] = "六年级"
+          data[grade]["name"] = "六年级"
         end
-        
-        data["js"] = []
-        0.upto l_checks do
-          data["js"] << 0
-        end
-        data["rs"] = []
-        0.upto l_checks do
-          data["rs"] << 0
-        end
-        
-        g_total = 0
         _ks.each do |k|
           members = k.members
-          g_total += members.length
-          total += members.length
           members.each do |member|
             member.check_rsts.each_with_index do |rst, i|
-              if rst.check_result == '近视' #&& i <= l_checks
-                if data["js"][i]
-                  data["js"][i] += 1
-                else
-                  data["js"] << 1
-                end
+              i = i.to_s
+              if data[grade]["jingshi"][i].nil?
+                data[grade]["jingshi"][i] = 0
+              end
+              if data[grade]["ruoshi"][i].nil?
+                data[grade]["ruoshi"][i] = 0
+              end
+              if data[grade]["member"][i].nil?
+                data[grade]["member"][i] = 0
+              end
+              if rst.check_result == '近视'
+                data[grade]['jingshi'][i] += 1
               end
               if rst.check_result == '弱视'
-                if data["rs"][i]
-                  data["rs"][i] += 1
-                else
-                  data["rs"] << 1
-                end
+                data[grade]['ruoshi'][i] += 1
               end
+              data[grade]["member"][i] += 1
             end
           end
         end
-        data["js"].each_with_index do |js, i|
-          if @school_data["js"][i]
-            @school_data["js"][i] += js
-          else
-            @school_data["js"] << js
-          end
-        end
-        data["rs"].each_with_index do |rs, i|
-          if @school_data["rs"][i]
-            @school_data["rs"][i] += rs
-          else
-            @school_data["rs"] << rs
-          end
-        end
-        if g_total != 0
-          data["js"].each_with_index do |js, i|
-            data["js"][i] = js * 100 / g_total
-          end
-          data["rs"].each_with_index do |rs, i|
-            data["rs"][i] = rs * 100 / g_total
-          end
-        end
-        @chart_data << data
       end
-      if total != 0
-        @school_data["js"].each_with_index do |js, i|
-          @school_data["js"][i] = js * 100 / total
+      
+      data.each do |k, v|
+        grade_jingshi = {}
+        grade_jingshi["name"] = v["name"]
+        grade_jingshi["js"] = []
+        grade_ruoshi = {}
+        grade_ruoshi["name"] = v["name"]
+        grade_ruoshi["rs"] = []
+        
+        v["jingshi"].each do |k2, v2|
+          if @school_data["jingshi"][k2.to_i].nil?
+            @school_data["jingshi"][k2.to_i] = 0
+          end
+          @school_data["jingshi"][k2.to_i] += v2
+          
+          if grade_jingshi["js"][k2.to_i].nil?
+            grade_jingshi["js"][k2.to_i] = 0
+          end
+          grade_jingshi["js"][k2.to_i] += v2
         end
-        @school_data["rs"].each_with_index do |rs, i|
-          @school_data["rs"][i] = rs * 100 / total
+        v["ruoshi"].each do |k2, v2|
+          if @school_data["ruoshi"][k2.to_i].nil?
+            @school_data["ruoshi"][k2.to_i] = 0
+          end
+          @school_data["ruoshi"][k2.to_i] += v2
+          
+          if grade_ruoshi["rs"][k2.to_i].nil?
+            grade_ruoshi["rs"][k2.to_i] = 0
+          end
+          grade_ruoshi["rs"][k2.to_i] += v2
         end
+        v["member"].each do |k2, v2|
+          if @school_data["member"][k2.to_i].nil?
+            @school_data["member"][k2.to_i] = 0
+          end
+          @school_data["member"][k2.to_i] += v2
+        end
+        @grade_jingshi << grade_jingshi
+        @grade_ruoshi << grade_ruoshi
+      end 
+      
+      
+      @jingshi_data = []
+      @school_data["jingshi"].each_with_index do |v, i|
+        @jingshi_data[i] = v * 100.0 / @school_data["member"][i]
       end
+      @ruoshi_data = []
+      @school_data["ruoshi"].each_with_index do |v, i|
+        @ruoshi_data[i] = v * 100.0 / @school_data["member"][i]
+      end
+      
+      @grade_jingshi_data = []
+      @grade_jingshi.each do |v|
+        obj = {}
+        obj["name"] = v["name"]
+        obj["js"] = []
+        v["js"].each_with_index do |val, i|
+          if @school_data["jingshi"][i] == 0
+            obj["js"] << 0
+          else
+            obj["js"] << val * 100.0 / @school_data["jingshi"][i]
+          end
+        end
+        @grade_jingshi_data << obj
+      end
+      
+      @grade_ruoshi_data = []
+      @grade_ruoshi.each do |v|
+        obj = {}
+        obj["name"] = v["name"]
+        obj["rs"] = []
+        v["rs"].each_with_index do |val, i|
+          if @school_data["ruoshi"][i] == 0
+            obj["rs"] << 0
+          else
+            obj["rs"] << val * 100.0 / @school_data["ruoshi"][i]
+          end
+        end
+        @grade_ruoshi_data << obj
+      end
+      
     end
   end
 
