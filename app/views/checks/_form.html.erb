@@ -65,6 +65,24 @@
 		</select>&nbsp;&nbsp;&nbsp;<input type="text" name="check[ltsj_m]" value="<% if @params %><%= @params["ltsj_m"] %><% end %>" class="ipt" /></td>
 	</tr>
 </table>
+<table>
+	<tr>
+		<td class="label">身高：</td>
+		<td colspan="2"><input type="text" name="check[shenggao]" value="<% if @params %><%= @params["shenggao"] %><% end %>" class="ipt" style="width:80px;" /> CM</td>
+	</tr>
+	<tr>
+		<td class="label">体重：</td>
+		<td colspan="2"><input type="text" name="check[tizhong]" value="<% if @params %><%= @params["tizhong"] %><% end %>" class="ipt" style="width:80px;" /> KG</td>
+	</tr>
+	<tr>
+		<td class="label">坐高：</td>
+		<td colspan="2"><input type="text" name="check[zuogao]" value="<% if @params %><%= @params["zuogao"] %><% end %>" class="ipt" style="width:80px;" /> CM</td>
+	</tr>
+	<tr>
+		<td class="label">脉率：</td>
+		<td colspan="2"><input type="text" name="check[mailv]" value="<% if @params %><%= @params["mailv"] %><% end %>" class="ipt" style="width:80px;" /> BPM</td>
+	</tr>
+</table>
 <% else %>
 <table class="first-check-tb">
 	<tr>
@@ -95,6 +113,10 @@
 </table>
 <% end %>
 <table>
+	<tr>
+		<td class="label">&nbsp;</td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
 	<tr>
 		<td class="label">&nbsp;</td>
 		<td colspan="2"><input type="hidden" name="member_id" value="<%= @member.id %>" /><input type="submit" name="submit" class="sbt" value="确定" /></td>
