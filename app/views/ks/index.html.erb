@@ -2,7 +2,12 @@
 		<div class="panel">
 			<div class="panel-t"><a href="/schools">学校列表</a> &gt;&gt; <%= @school.name %></div>
 			<div class="panel-con">
-				<p class="link_btn"><a href="/schools">返回</a><%= link_to '添加班级', new_school_k_path, :class => "block" %></p>
+				<p class="link_btn">
+					<a href="/schools">返回</a>
+					<%= link_to '添加班级', new_school_k_path, :class => "block" %>
+					<a href="/schools/<%= @school.id %>/upgrade">升级</a>
+					<a href="/schools/<%= @school.id %>/downgrade">降级</a>
+				</p>
 				<% @ks.each do |grade, _ks| %>
 				<% case grade %>
 				<% when "1" %>

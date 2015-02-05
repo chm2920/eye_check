@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   
-  before_action :set_school, only: [:edit, :update, :destroy]
+  before_action :set_school, only: [:edit, :update, :destroy, :upgrade, :downgrade]
   
   def index
     @schools = School.all
@@ -33,6 +33,24 @@ class SchoolsController < ApplicationController
   def destroy
     @school.destroy
     redirect_to schools_url
+  end
+  
+  def upgrade
+    @ks = K.where(school_id: @school.id)
+    @ks.each do |k|
+      k.grade = k.grade.to_i + 1
+      k.save
+    end
+    redirect_to school_ks_url(@school)
+  end
+  
+  def downgrade
+    @ks = K.where(school_id: @school.id)
+    @ks.each do |k|
+      k.grade = k.grade.to_i - 1
+      k.save
+    end
+    redirect_to school_ks_url(@school)
   end
   
   private

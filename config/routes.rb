@@ -18,6 +18,10 @@ EyeCheck::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :schools do
+    member do
+      get "upgrade"
+      get "downgrade"
+    end
     resources :ks do
       resources :members
     end
